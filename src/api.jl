@@ -76,6 +76,7 @@ function unsubscribe( p::Publisher, s::Subscriber  )
 end #defined unsubscribe function
 
 
+# MESSAGE FUNCTIONS
 """
     function createMessage(header::String, subject::String, body::Array{Float64, 1})
 
