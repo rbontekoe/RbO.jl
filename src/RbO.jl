@@ -1,7 +1,7 @@
 # main module  - rbontekoe@appligate.nl
 module RbO
 
-    export createPublisher, createSubscriber, subscribe, unsubscribe, createMessage, Subscriber, Publisher
+    export createPublisher, createSubscriber, subscribe, unsubscribe, createMessage, sendMessage
 
     include("api.jl")
 
