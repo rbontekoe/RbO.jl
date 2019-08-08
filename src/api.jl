@@ -75,6 +75,25 @@ function unsubscribe( p::Publisher, s::Subscriber  )
     Publisher(p.name, p.publishertype, filter(x -> x != ([s] ∩ p.list)[1], p.list))
 end #defined unsubscribe function
 
+
+"""
+    function createMessage(header::String, subject::String, body::Array{Float64, 1})
+
+Create a message for subscribers
+
+# Example
+
+```
+julia> using RbO
+
+julia> message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10.5, 12.7, 10.2] )
+RbO.Message("Weather station", "Temperatures", [10.9, 12.0, 10.5, 12.7, 10.2])
+```
+"""
+function createMessage(header::String, subject::String, body::Array{Float64, 1})
+    Message(header, subject, body)
+end
+
 """
     function sendMessage( n::Publisher, m::Message, f::Function )
 
@@ -83,6 +102,8 @@ Notifies subscribers
 # Example
 
 ```
+julia> using RbO
+
 julia> nyt = createPublisher( "NYT" )
 Publisher("NYT", NEWSPAPER::PublisherType = 0, Subscriber[])
 
@@ -92,25 +113,25 @@ Subscriber("Scrooge McDuck", "scrooge@duckcity.com", SUM_CALCULATOR::SubscriberT
 julia> subscribe(nyt, scrooge)
 Publisher("NYT", NEWSPAPER::PublisherType = 0, Subscriber[Subscriber("Scrooge McDuck", "scrooge@duckcity.com", SUM_CALCULATOR)])
 
-julia> messageNyt = Message( "Weather station", "Temperatures", [10, 12, 9, 12, 14] )
-Message("Weather station", "Temperatures", [10.0, 12.0, 9.0, 12.0, 14.0])
+julia> message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10.5, 12.7, 10.2] )
+RbO.Message("Weather station", "Temperatures", [10.9, 12.0, 10.5, 12.7, 10.2])
 
 julia> result = []
 0-element Array{Any,1}
 
-julia> function processMessage( s::Subscriber, n::Publisher, m::Message )
-           if s.subscribertype == SUM_CALCULATOR
+julia> function processMessage( s::Subscriber, n::Publisher, m::RbO.Message )
+           if s.subscribertype == RbO.SUM_CALCULATOR
                println( s.name * " - the sum of the last five temperatures is: " * string(sum(m.body)) )
-           elseif s.subscribertype == AVG_CALCULATOR
+           elseif s.subscribertype == RbO.AVG_CALCULATOR
                println( s.name * " - the average temperature of the last five temperatures is: " * string(sum(m.body) / length(m.body)) )
-           elseif s.subscribertype == PLOTTER
+           elseif s.subscribertype == RbO.PLOTTER
                println( s.name * " - the dataset with temperatures is: " * string(m.body))
                global result = m.body
            end
        end
 
-julia> processMessage
-processMessage (generic function with 1 method)
+#julia> processMessage
+#processMessage (generic function with 1 method)
 
 julia> sendMessage( nyt, messageNyt, processMessage )
 Scrooge McDuck - the sum of the last five temperatures is: 57.0
@@ -123,19 +144,12 @@ julia> plot(result)
 ```
 plot(result)```
 """
-function sendMessage( p::Publisher, m::Message, f::Function)
+function sendMessage( p::Publisher, m::Message, f::Function )
     for subscriber in p.list
         f( subscriber, p, m )
     end
 end #defined sendMessage high order function
 
-```
-    function createMessage(header::String, subject::String, body::Array{Float64, 1})
-
-```
-function createMessage(header::String, subject::String, body::Array{Float64, 1})
-    Message(header, subject, body)
-end
 
 #SUBSCRIPER FUNCTIONS
 """
@@ -146,6 +160,8 @@ Creates a subscriber
 # Examples:
 
 ```
+julia> using RbO
+
 julia> createSubscriber( "Micky Mouse" )
 Subscriber("Micky Mouse", "", SUM_CALCULATOR::SubscriberType = 0)
 ```
@@ -161,8 +177,10 @@ Creates a subscriber with an e-mail address
 
 # Example:
 ```
-julia> createSubscriber( "Micky Mouse" )
-Subscriber("Micky Mouse", "", SUM_CALCULATOR::SubscriberType = 0)
+julia> using RbO
+
+julia> createSubscriber( "Mickey Mouse" )
+Subscriber("Mickey Mouse", "", SUM_CALCULATOR::SubscriberType = 0)
 ```
 """
 function createSubscriber( name::String, email::String ) ::Subscriber
@@ -178,10 +196,12 @@ See also: [`SubscriberType()`](@ref)
 
 # Example
 ```
-julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", PLOTTER )
+julia> using RbO
+
+julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", RbO.PLOTTER )
 Subscriber("Scrooge McDuck", "scrooge@duckcity.com", PLOTTER::SubscriberType = 2)
 ```
 """
 function createSubscriber( name::String, email::String, subscribertype::SubscriberType ) ::Subscriber
     Subscriber( name, email, subscribertype )
-end #defined createSubscriber function method 3
+end #defined createSubscriber
