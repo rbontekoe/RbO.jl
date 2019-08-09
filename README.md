@@ -1,3 +1,4 @@
 # Package for Observator test
 
-Focus on package RbO.jl
+More experiments with julia.
+- Create a package (RbO.jl)
