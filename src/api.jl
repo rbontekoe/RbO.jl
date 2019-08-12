@@ -1,7 +1,7 @@
 # api.jl - rbontekoe@appligate.nl
 include("domain.jl")
 
-#Summary of API methods definitions
+#= Summary of API methods definitions
 function createSubscriber(name::String)::Subscriber end
 function createSubscriber(name::String, email::String)::Subscriber end
 function createSubscriber( name::String, email::String, subscribertype::SubscriberType ) end
@@ -9,7 +9,9 @@ function createSubscriber( name::String, email::String, subscribertype::Subscrib
 function createPublisher(name::String, publishertype::PublisherType)::Publisher end
 function subscribe(publisher::Publisher, subscriber::Subscriber) end
 function unsubscribe(publisher::Publisher, subscriber::Subscriber, )::Publisher end
+function createMessage(header::String, subject::String, body::Array{Float64, 1})::Message end
 function sendMessage(publisher::Publisher, message::Information, f::Function) end
+=#
 
 #PUBLISHER FUNCTIONS
 """
