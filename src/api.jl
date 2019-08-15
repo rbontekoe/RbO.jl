@@ -1,19 +1,28 @@
 # api.jl - rbontekoe@appligate.nl
 include("domain.jl")
 
-#= Summary of API methods definitions
-function createSubscriber(name::String)::Subscriber end
-function createSubscriber(name::String, email::String)::Subscriber end
-function createSubscriber( name::String, email::String, subscribertype::SubscriberType ) end
+export Subscriber, Publisher, Message
 
-function createPublisher(name::String, publishertype::PublisherType)::Publisher end
+# API SUMMARY
+"""
+    apiInfo()
+
+##Summary of API methods definitions
+```
+function createSubscriber( name::String)::Subscriber )::Subscriber end
+function createSubscriber( name::String, email::String )::Subscriber end
+function createSubscriber( name::String, email::String, subscribertype::SubscriberType )::Subscriber end
+
+function createPublisher( name::String, publishertype::PublisherType )::Publisher end
 function subscribe(publisher::Publisher, subscriber::Subscriber) end
 function unsubscribe(publisher::Publisher, subscriber::Subscriber, )::Publisher end
 function createMessage(header::String, subject::String, body::Array{Float64, 1})::Message end
 function sendMessage(publisher::Publisher, message::Information, f::Function) end
-=#
+```
+"""
+    apiInfo()
 
-#PUBLISHER FUNCTIONS
+# PUBLISHER FUNCTIONS
 """
     createPublisher( name::String, publishertype::PublisherType )
 
@@ -205,6 +214,6 @@ julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", RbO
 Subscriber("Scrooge McDuck", "scrooge@duckcity.com", PLOTTER::SubscriberType = 2)
 ```
 """
-function createSubscriber( name::String, email::String, subscribertype::SubscriberType ) ::Subscriber
+function createSubscriber( name::String, email::String, subscribertype::SubscriberType )::Subscriber
     Subscriber( name, email, subscribertype )
 end #defined createSubscriber
