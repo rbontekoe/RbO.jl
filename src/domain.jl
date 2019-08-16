@@ -25,8 +25,8 @@ end # defined enumeration for Publisher types
 - PLOTTER (keeps the dataset for plotting)
 """
 @enum SubscriberType begin
-    STD_CALCULATOR
     MEAN_CALCULATOR
+    STD_CALCULATOR
     PLOTTER
 end # defined enumeration for Subscriber types
 
@@ -62,7 +62,7 @@ struct Subscriber
     subscribertype::SubscriberType
     #constructors
     Subscriber( name::String ) = new( name, "", MEAN_CALCULATOR )
-    Subscriber( name::String, email::String ) = new( name, email, STD_CALCULATOR )
+    Subscriber( name::String, email::String ) = new( name, email, MEAN_CALCULATOR )
     Subscriber( name::String, email::String, subscribertype::SubscriberType ) = new( name, email, subscribertype )
 end # efine Scubscriber object
 
