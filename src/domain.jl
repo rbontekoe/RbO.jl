@@ -20,13 +20,13 @@ end # defined enumeration for Publisher types
     SubscriberType
 
 # Values
-- SUM_CALCULATOR (caluclates the sum of set of data, default value)
-- AVG_CALCULATOR (caluclates the average of set of data)
+- STD_CALCULATOR (caluclates the standard deviation of set of data, default value)
+- MEAN_CALCULATOR (caluclates the mean of set of data)
 - PLOTTER (keeps the dataset for plotting)
 """
 @enum SubscriberType begin
-    SUM_CALCULATOR
-    AVG_CALCULATOR
+    STD_CALCULATOR
+    MEAN_CALCULATOR
     PLOTTER
 end # defined enumeration for Subscriber types
 
@@ -61,8 +61,8 @@ struct Subscriber
     email::String
     subscribertype::SubscriberType
     #constructors
-    Subscriber( name::String ) = new( name, "", SUM_CALCULATOR )
-    Subscriber( name::String, email::String ) = new( name, email, SUM_CALCULATOR )
+    Subscriber( name::String ) = new( name, "", MEAN_CALCULATOR )
+    Subscriber( name::String, email::String ) = new( name, email, STD_CALCULATOR )
     Subscriber( name::String, email::String, subscribertype::SubscriberType ) = new( name, email, subscribertype )
 end # efine Scubscriber object
 
