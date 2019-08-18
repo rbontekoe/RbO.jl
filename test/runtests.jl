@@ -74,11 +74,11 @@ end
     processMessage( s::Subscriber, n::Publisher, m::Message ) =
         (s.subscribertype == MEAN_CALCULATOR) ? sum(m.body) / length(m.body) : 0
 
-    n = createPublisher( "de Duck Chronicals" )
+    n = createPublisher( "The Duck Chronicals" )
     s = createSubscriber( "Donald Duck", "donald@duckcity.com", MEAN_CALCULATOR )
     subscribe(n, s)
 
-    m = Message( "Weather station", "Temperatures", [10, 12, 9, 14, 8] )
+    m = createMessage( "Weather station", "Temperatures", [10.0, 12.0, 9.0, 14.0, 8.0] )
 
     avg = processMessage(s, n, m)
 
