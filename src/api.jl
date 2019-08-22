@@ -18,10 +18,12 @@ function sendMessage end
 
 """
     createPublisher( name::String )
-Returns a Publisher object
-- name: name of the Publisher (mandatory)
-- publishertype, see: [`PublisherType()`](@ref)
-Exception: MissingException
+
+# Arguments
+- `name::String`: name of the Publisher (mandatory).
+- `publishertype::PublisherType`: see: [`PublisherType()`](@ref).
+
+# Examples
 ```
 julia> chronicals = createPublisher( "the Duck Chronicals" )
 Publisher("the Duck Chronicals", NEWSPAPER::PublisherType = 0, Subscriber[])
