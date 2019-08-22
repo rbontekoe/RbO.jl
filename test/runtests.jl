@@ -1,7 +1,7 @@
 using Test
 include("../src/api.jl")
 
-@testset "PublisherType test" begin
+@testset "PublisherTyRbo.rupe test" begin
     @test PublisherType(0) == NEWSPAPER
     @test PublisherType(1) == MAGAZINE
     @test PublisherType(2) == SOCIAL_MEDIA

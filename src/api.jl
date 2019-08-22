@@ -1,46 +1,53 @@
 # api.jl - rbontekoe@appligate.nl
 include("domain.jl")
 
+### Domain objects
 export Subscriber, Publisher, Message
+### SubscriberType Values
+export MEAN_CALCULATOR, STD_CALCULATOR, PLOTTER
+### PublisherType Values
+export NEWSPAPER, MAGAZINE, SOCIAL_MEDIA
 
-# API SUMMARY
+## API Funtions
+function createSubscriber end
+function createPublisher end
+function subscribe end
+function unsubscribe end
+function createMessage end
+function sendMessage end
+
 """
-    apiInfo()
-
-##Summary of API methods definitions
+    createPublisher( name::String )
+Returns a Publisher object
+- name: name of the Publisher (mandatory)
+- publishertype, see: [`PublisherType()`](@ref)
+Exception: MissingException
 ```
-function createSubscriber( name::String)::Subscriber )::Subscriber end
-function createSubscriber( name::String, email::String )::Subscriber end
-function createSubscriber( name::String, email::String, subscribertype::SubscriberType )::Subscriber end
-
-function createPublisher( name::String, publishertype::PublisherType )::Publisher end
-function subscribe(publisher::Publisher, subscriber::Subscriber) end
-function unsubscribe(publisher::Publisher, subscriber::Subscriber, )::Publisher end
-function createMessage(header::String, subject::String, body::Array{Float64, 1})::Message end
-function sendMessage(publisher::Publisher, message::Information, f::Function) end
+julia> chronicals = createPublisher( "the Duck Chronicals" )
+Publisher("the Duck Chronicals", NEWSPAPER::PublisherType = 0, Subscriber[])
 ```
 """
-    apiInfo()
+createPublisher( name::String )::Publisher =
+        name != "" ? Publisher( name, NEWSPAPER, Array{Subscriber}(undef, 0) ) : throw(MissingException("Publisher name is mandatory"))
 
-# PUBLISHER FUNCTIONS
 """
     createPublisher( name::String, publishertype::PublisherType )
 
 Returns a Publisher object
 - name: name of the Publisher (mandatory)
 - publishertype, see: [`PublisherType()`](@ref)
-
 Exception: MissingException
 
-# Examples
 ```
 julia> chronicals = createPublisher( "the Duck Chronicals" )
 Publisher("the Duck Chronicals", NEWSPAPER::PublisherType = 0, Subscriber[])
 ```
 """
-function createPublisher( name::String, publishertype::PublisherType = NEWSPAPER )::Publisher
+createPublisher( name::String, publishertype::PublisherType )::Publisher =
         name != "" ? Publisher( name, publishertype, Array{Subscriber}(undef, 0) ) : throw(MissingException("Publisher name is mandatory"))
-end #defined createPublisher function
+
+
+
 
 """
     subscribe( p::Publisher, s::Subscriber )
@@ -60,9 +67,8 @@ julia> subscribe( chronicals, scrooge )
 Publisher("the Duck Chronicals", NEWSPAPER::PublisherType = 0, Subscriber[Subscriber("Scrooge McDuck", "scrooge@duckcity.com", PLOTTER)])
 ```
 """
-function subscribe( p::Publisher, s::Subscriber )
-    np = Publisher( p.name, p.publishertype, push!( p.list, s ) )
-end #defined subscribe function
+subscribe( p::Publisher, s::Subscriber ) =
+    Publisher( p.name, p.publishertype, push!( p.list, s ) )
 
 """
     unsubscribe( p::Publisher, s::Subscriber )
@@ -82,14 +88,12 @@ nyt = unscribe( nyt, scrooge )
 Note: Publisher is an immutable object. 'unscubscribe' creates a new Publisher
 object, and is reassigned to the variable 'nyt'.
 """
-function unsubscribe( p::Publisher, s::Subscriber  )
+unsubscribe( p::Publisher, s::Subscriber  ) =
     Publisher(p.name, p.publishertype, filter(x -> x != ([s] ∩ p.list)[1], p.list))
-end #defined unsubscribe function
-
 
 # MESSAGE FUNCTIONS
 """
-    function createMessage(header::String, subject::String, body::Array{Float64, 1})
+    createMessage(header::String, subject::String, body::Array{Float64, 1})
 
 Create a message for subscribers
 
@@ -102,12 +106,11 @@ julia> message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10
 RbO.Message("Weather station", "Temperatures", [10.9, 12.0, 10.5, 12.7, 10.2])
 ```
 """
-function createMessage(header::String, subject::String, body::Array{Float64, 1})
+createMessage(header::String, subject::String, body::Array{Float64, 1}) =
     Message(header, subject, body)
-end
 
 """
-    function sendMessage( n::Publisher, m::Message, f::Function )
+    sendMessage( n::Publisher, m::Message, f::Function )
 
 Notifies subscribers
 
@@ -156,7 +159,7 @@ julia> plot(result)
 ```
 plot(result)```
 """
-function sendMessage( p::Publisher, m::Message, f::Function )
+sendMessage( p::Publisher, m::Message, f::Function ) = begin
     for subscriber in p.list
         f( subscriber, p, m )
     end
@@ -178,9 +181,8 @@ julia> createSubscriber( "Micky Mouse" )
 Subscriber("Micky Mouse", "", SUM_CALCULATOR::SubscriberType = 0)
 ```
 """
-function createSubscriber( name::String ) ::Subscriber
+createSubscriber( name::String ) ::Subscriber =
     Subscriber( name )
-end #defined createSubscriber function method 1
 
 """
     createSubscriber( name::String, email::String )
@@ -191,13 +193,12 @@ Creates a subscriber with an e-mail address
 ```
 julia> using RbO
 
-julia> createSubscriber( "Mickey Mouse" )
-Subscriber("Mickey Mouse", "", SUM_CALCULATOR::SubscriberType = 0)
+julia> createSubscriber( "Daisy Mouse", "daisy@duckcity.com" )
+Subscriber("Daisy Mouse", "daisy@duckcity.com", SUM_CALCULATOR::SubscriberType = 0)
 ```
 """
-function createSubscriber( name::String, email::String ) ::Subscriber
+createSubscriber( name::String, email::String ) ::Subscriber =
     Subscriber( name, email )
-end #defined createSubscriber function method 2
 
 """
     createSubscriber( name::String, email::String, subscribertype::SubscriberType )
@@ -214,6 +215,5 @@ julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", RbO
 Subscriber("Scrooge McDuck", "scrooge@duckcity.com", PLOTTER::SubscriberType = 2)
 ```
 """
-function createSubscriber( name::String, email::String, subscribertype::SubscriberType )::Subscriber
+createSubscriber( name::String, email::String, subscribertype::SubscriberType )::Subscriber =
     Subscriber( name, email, subscribertype )
-end #defined createSubscriber

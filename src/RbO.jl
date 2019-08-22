@@ -5,4 +5,4 @@ module RbO
 
     include("api.jl")
 
-end #end of RobObserverModel.jl
+end #end of RobO.jl
