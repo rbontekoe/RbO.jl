@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title> · RbO</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link href="assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><h1>RbO</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li class="current"><a class="toctext" href></a><ul class="internal"><li class="toplevel"><a class="toctext" href="#Home-1">Home</a></li><li><a class="toctext" href="#Introduction-1">Introduction</a></li><li class="toplevel"><a class="toctext" href="#Installing-the-module-1">Installing the module</a></li><li><a class="toctext" href="#Example-of-adding-the-module-1">Example of adding the module</a></li><li><a class="toctext" href="#Example-of-cloning-the-module-1">Example of cloning the module</a></li><li class="toplevel"><a class="toctext" href="#Public-interface-1">Public interface</a></li><li><a class="toctext" href="#Exports-1">Exports</a></li><li><a class="toctext" href="#createSubscriber-1">createSubscriber</a></li><li><a class="toctext" href="#createPublisher-1">createPublisher</a></li><li><a class="toctext" href="#subscribe-1">subscribe</a></li><li><a class="toctext" href="#unsubscribe-1">unsubscribe</a></li><li><a class="toctext" href="#createMessage-1">createMessage</a></li><li><a class="toctext" href="#sendMessage-1">sendMessage</a></li><li class="toplevel"><a class="toctext" href="#Example-1">Example</a></li><li><a class="toctext" href="#Julia-Notebook-1">Julia Notebook</a></li></ul></li></ul></nav><article id="docs"><header><nav><ul><li><a href></a></li></ul><a class="edit-page" href="https://github.com/rbontekoe/RbO.jl/blob/master/docs/src/index.md"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span></span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="-1" href="#-1"></a></h1><h1><a class="nav-anchor" id="Home-1" href="#Home-1">Home</a></h1><h2><a class="nav-anchor" id="Introduction-1" href="#Introduction-1">Introduction</a></h2><p>Recently I started with learning the Julia programming language. In order to build up experience, I started this project with &#39;The Observer&#39;.</p><h1><a class="nav-anchor" id="Installing-the-module-1" href="#Installing-the-module-1">Installing the module</a></h1><p>The module can be added or cloned from GitHub: https://github.com/rbontekoe/RbO.jl.</p><h2><a class="nav-anchor" id="Example-of-adding-the-module-1" href="#Example-of-adding-the-module-1">Example of adding the module</a></h2><pre><code class="language-none">julia&gt; ]
+
+(v1.1) pkg&gt; (v1.1) pkg&gt; add https://github.com/rbontekoe/RbO.jl
+
+julia&gt; using RbO</code></pre><h2><a class="nav-anchor" id="Example-of-cloning-the-module-1" href="#Example-of-cloning-the-module-1">Example of cloning the module</a></h2><pre><code class="language-none">$ mkdir julia_projects
+
+$ cd julia_projects
+
+$ git clone https://github.com/rbontekoe/RbO.jl.git
+
+$ cd RbO.jl
+
+$ julia
+
+julia&gt; push!(LOAD_PATH, &quot;/home/rob/julia_projects/RbO.jl/src/&quot;)
+
+julia&gt; using RbO</code></pre><h1><a class="nav-anchor" id="Public-interface-1" href="#Public-interface-1">Public interface</a></h1><p>This the project that I use to master the Julia programming language. I have taken the Observer Pattern as the goal to implement. The main objects are Publisher and Subscriber. The Publisher delivers a message to the Subscribers. The information consists of temperatures that were measured.</p><h2><a class="nav-anchor" id="Exports-1" href="#Exports-1">Exports</a></h2><p><em>API methods</em></p><ul><li>createSubscriber, createPublisher, createMessage, sendMessage</li></ul><p><em>Domain objects</em></p><ul><li>Subscriber, Publisher, Message</li></ul><p><em>SubscriberType values</em></p><ul><li>MEAN<em>CALCULATOR, STD</em>CALCULATOR, PLOTTER</li></ul><p><em>PublisherType values</em></p><ul><li>NEWSPAPER, MAGAZINE, SOCIAL_MEDIA</li></ul><h2><a class="nav-anchor" id="createSubscriber-1" href="#createSubscriber-1">createSubscriber</a></h2><p><strong>createSubscriber( name [, email [, subscribertype]] )</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; mickey = createSubscriber( &quot;Mickey&quot; )
+Subscriber(&quot;Mickey&quot;, &quot;&quot;, MEAN_CALCULATOR::SubscriberType = 0)
+
+julia&gt; daisy = createSubscriber( &quot;Daisy&quot;, &quot;daisy@duckcity.com&quot; )
+Subscriber(&quot;Daisy&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR::SubscriberType = 0)
+
+julia&gt; scrooge = createSubscriber( &quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER )
+Subscriber(&quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER::SubscriberType = 2)</code></pre><h2><a class="nav-anchor" id="createPublisher-1" href="#createPublisher-1">createPublisher</a></h2><p><strong>createPublisher( name [, publishertype] )</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; nyt = createPublisher(&quot;New York Times&quot;)
+Publisher(&quot;New York Times&quot;, NEWSPAPER::PublisherType = 0, Subscriber[])
+
+julia&gt; chronicals = createPublisher(&quot;The Duck City Chronicals&quot;, MAGAZINE)
+Publisher(&quot;The Duck City Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[])
+
+np = createPublisher(&quot;&quot;)
+ERROR: MissingException: Publisher name is mandatory
+Stacktrace:
+ [1] createPublisher(::String) at /home/rob/julia_projects/RbO.jl/src/api.jl:30
+ [2] top-level scope at none:0</code></pre><h2><a class="nav-anchor" id="subscribe-1" href="#subscribe-1">subscribe</a></h2><p><strong>subscribe( p::Publisher, s::Subscriber )</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; subscribe( chronicals, mickey )
+Publisher(&quot;The Duck City Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[Subscriber(&quot;Mickey&quot;, &quot;&quot;, MEAN_CALCULATOR)])
+
+julia&gt; subscribe( chronicals, daisy )
+Publisher(&quot;The Duck City Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[Subscriber(&quot;Mickey&quot;, &quot;&quot;, MEAN_CALCULATOR), Subscriber(&quot;Daisy&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR)])
+
+julia&gt; subscribe( chronicals, scrooge )
+Publisher(&quot;The Duck City Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[Subscriber(&quot;Mickey&quot;, &quot;&quot;, MEAN_CALCULATOR), Subscriber(&quot;Daisy&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR), Subscriber(&quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER)]))</code></pre><h2><a class="nav-anchor" id="unsubscribe-1" href="#unsubscribe-1">unsubscribe</a></h2><p><strong>subscribe( p::Publisher, s::Subscriber )</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; chronicals = unsubscribe(chronicals, mickey)
+Publisher(&quot;The Duck City Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[Subscriber(&quot;Daisy&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR), Subscriber(&quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER)])</code></pre><h2><a class="nav-anchor" id="createMessage-1" href="#createMessage-1">createMessage</a></h2><p><strong>createMessage(header::String, subject::String, body::Array{Float64, 1})</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; message = createMessage( &quot;Weather station&quot;, &quot;Temperatures&quot;, [10.9, 12, 10.5, 12.7, 10.2] )
+Message(&quot;Weather station&quot;, &quot;Temperatures&quot;, [10.9, 12.0, 10.5, 12.7, 10.2])</code></pre><h2><a class="nav-anchor" id="sendMessage-1" href="#sendMessage-1">sendMessage</a></h2><p><strong>sendMessage( p::Publisher, m::Message, f::Function )</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; using Statistics
+
+julia&gt; processMessage( s::Subscriber, n::Publisher, m::Message ) = begin
+           if s.subscribertype == STD_CALCULATOR
+               println( s.name * &quot;:\t the standard deviation of the last five temperatures is: &quot; * string( round( std(m.body); digits=2) ) * &quot; °C&quot; )
+           elseif s.subscribertype == MEAN_CALCULATOR
+               #println( s.name * &quot;:\t the average of the last five temperatures is: &quot; * string(sum(m.body) / length(m.body)) * &quot; °C&quot; )
+               println( s.name * &quot;:\t the average of the last five temperatures is: &quot; * string( mean( m.body ) ) * &quot; °C&quot; )
+           elseif s.subscribertype == PLOTTER
+               println( s.name * &quot;:\t the dataset with the last five temperatures is: &quot; * string( m.body ) )
+               global result = m.body
+           end
+       end
+processMessage (generic function with 1 method)
+
+julia&gt; sendMessage( chronicals, message, processMessage )
+Daisy:   the average of the last five temperatures is: 11.26 °C
+Scrooge McDuck:  the dataset with the last five temperatures is: [10.9, 12.0, 10.5, 12.7, 10.2]</code></pre><h1><a class="nav-anchor" id="Example-1" href="#Example-1">Example</a></h1><h2><a class="nav-anchor" id="Julia-Notebook-1" href="#Julia-Notebook-1">Julia Notebook</a></h2><p>You can find an example of the code in a Julia notebook on GitHub. See: https://github.com/rbontekoe/RbO.jl/blob/master/test.ipynb</p><footer><hr/></footer></article></body></html>
