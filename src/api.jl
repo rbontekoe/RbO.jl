@@ -8,7 +8,7 @@ export MEAN_CALCULATOR, STD_CALCULATOR, PLOTTER
 ### PublisherType Values
 export NEWSPAPER, MAGAZINE, SOCIAL_MEDIA
 
-## API Funtions
+## API Functions
 function createSubscriber end
 function createPublisher end
 function subscribe end

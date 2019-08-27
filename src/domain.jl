@@ -33,7 +33,7 @@ end # defined enumeration for Subscriber types
 """
     struct Subscriber
 
-# Fields
+# Arguments
 - name::String
 - email::String
 - subscribertype::SubscriberType
@@ -43,17 +43,7 @@ Reference: RbO.Subscriber
 
 # Example
 ```
-julia> function processMessage( s::RbO.Subscriber, n::RbO.Publisher, m::RbO.Message )
-           if s.subscribertype == RbO.SUM_CALCULATOR
-               println( s.name * " - the sum of the last 5 temperatures is: " * string(sum(m.body)) )
-           elseif s.subscribertype == RbO.AVG_CALCULATOR
-               println( s.name * " - the average of the last five temperatures is: " * string(sum(m.body) / length(m.body)) )
-           elseif s.subscribertype == RbO.PLOTTER
-               println( s.name * " - the dataset with the last five temperatures is: " * string(m.body))
-               global result = m.body
-           end
-       end
-processMessage (generic function with 1 method)
+julia> daisy = Subscriber("Daisy")
 ```
 """
 struct Subscriber
@@ -64,7 +54,7 @@ struct Subscriber
     Subscriber( name::String ) = new( name, "", MEAN_CALCULATOR )
     Subscriber( name::String, email::String ) = new( name, email, MEAN_CALCULATOR )
     Subscriber( name::String, email::String, subscribertype::SubscriberType ) = new( name, email, subscribertype )
-end # efine Scubscriber object
+end # defined Scubscriber object
 
 """
     struct Publisher
