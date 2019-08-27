@@ -1,6 +1,6 @@
-# Package for Observator test
+# Package for Observer test
 
-More experiments with julia.
-- Create a package (RbO.jl)
-- Create test.ipynb as example (using Literate.jl)
+I am experimenting with Julia. In the application sends the publisher messages containing temperatures to its subscribers.
+- Create a Julia package (RbO.jl)
+- Create Julia Notebook 'test.ipynb' as an example (using Literate.jl)
 - Create documentation (using Documenter.jl), see https://rbontekoe.github.io/RbO.jl
