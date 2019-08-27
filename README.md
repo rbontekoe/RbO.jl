@@ -1,4 +1,4 @@
-# Package for Observer test
+# Package for Observer Pattern experiment
 
 I am experimenting with Julia. In the application sends the publisher messages containing temperatures to its subscribers.
 - Create a Julia package (RbO.jl)
