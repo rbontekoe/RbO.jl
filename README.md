@@ -1,4 +1,4 @@
-# Package for Observer test
+# Package for Observer Pattern experiment
 
 I am experimenting with Julia. In the application a publisher sends messages to its subscribers. The message contains temperatures.
 
