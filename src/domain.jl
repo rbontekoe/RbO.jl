@@ -15,8 +15,10 @@ function read end
 function update end
 function delete end
 
+## Abstract types
 abstract type Information end
 
+## Domain items
 """
     PublisherType
 
@@ -29,7 +31,7 @@ abstract type Information end
     NEWSPAPER
     MAGAZINE
     SOCIAL_MEDIA
-end # defined enumeration for Publisher types
+end # defined enumerator for Publisher types
 
 """
     SubscriberType
@@ -43,7 +45,7 @@ end # defined enumeration for Publisher types
     MEAN_CALCULATOR
     STD_CALCULATOR
     PLOTTER
-end # defined enumeration for Subscriber types
+end # defined enumerator for Subscriber types
 
 """
     struct Subscriber
