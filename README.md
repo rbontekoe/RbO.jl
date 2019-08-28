@@ -1,6 +1,6 @@
 # Package for Observer Pattern experiment
 
-I am experimenting with Julia. In the application a publisher sends messages to its subscribers. The message contains temperatures.
+I am experimenting with Julia. In the application a publisher sends messages to its subscribers. The message contains temperatures. The status is shown in the table.
 
 | Status   | Activity                                   |
 | :---     | :---
