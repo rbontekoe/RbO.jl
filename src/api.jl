@@ -8,14 +8,6 @@ export MEAN_CALCULATOR, STD_CALCULATOR, PLOTTER
 ### PublisherType Values
 export NEWSPAPER, MAGAZINE, SOCIAL_MEDIA
 
-## API Functions
-function createSubscriber end
-function createPublisher end
-function subscribe end
-function unsubscribe end
-function createMessage end
-function sendMessage end
-
 """
     createPublisher( name::String )
 

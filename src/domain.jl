@@ -1,5 +1,20 @@
 # domain.jl - rbontekoe@appligate.nl
 
+## API Functions
+function createSubscriber end
+function createPublisher end
+function subscribe end
+function unsubscribe end
+function createMessage end
+function sendMessage end
+
+## Infrastructure functions
+function createDbConnection end
+function create end
+function read end
+function update end
+function delete end
+
 abstract type Information end
 
 """
