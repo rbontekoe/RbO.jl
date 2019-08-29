@@ -89,7 +89,10 @@ end # end of RbO.jl
  &quot;@&quot;                                   
  &quot;@v#.#&quot;                               
  &quot;@stdlib&quot;                             
- &quot;/home/rob/julia_projects/RbO.jl/src/&quot;</code></pre><h2><a class="nav-anchor" id="Make-the-package-available-for-your-users-1" href="#Make-the-package-available-for-your-users-1">Make the package available for your users</a></h2><p>You have to upload the package to GitHub to make it accessible for the user. Use the following steps.</p><ul><li>Install git.</li><li>$ sudo apt install git</li><li>Create a user account on GitHub: <a href="https://github.com/">https://github.com/</a>.</li><li>Create an empty repository, e.g., RbO.jl. See <a href="https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad">Create a repo</a>, and upload your local folder.</li></ul><p>In Julia the user can install the package as follows.</p><pre><code class="language-none">julia&gt; ]
+ &quot;/home/rob/julia_projects/RbO.jl/src/&quot;
+
+ julia&gt; using RbO
+</code></pre><h2><a class="nav-anchor" id="Make-the-package-available-for-your-users-1" href="#Make-the-package-available-for-your-users-1">Make the package available for your users</a></h2><p>You have to upload the package to GitHub to make it accessible for the user. Use the following steps.</p><ul><li>Install git.</li><li>$ sudo apt install git</li><li>Create a user account on GitHub: <a href="https://github.com/">https://github.com/</a>.</li><li>Create an empty repository, e.g., RbO.jl. See <a href="https://gist.github.com/mindplace/b4b094157d7a3be6afd2c96370d39fad">Create a repo</a>, and upload your local folder.</li></ul><p>In Julia the user can install the package as follows.</p><pre><code class="language-none">julia&gt; ]
 
 (v1.1) pkg&gt; add https://github.com/rbontekoe/RbO.jl
 
