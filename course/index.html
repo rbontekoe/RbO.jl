@@ -9,7 +9,7 @@ daisy = Subscriber(&quot;Daisy&quot;, &quot;daisy@duckcity.com&quot;)
 println( daisy.name )
 
 # Reassign to change the object properties.
-daisy = Subscriber(&quot;Daisy Duck&quot;, &quot;daisy@duckcity.com&quot;)</code></pre><table><tr><th style="text-align: left"><em>&gt;&gt; Note &lt;&lt;</em></th></tr><tr><td style="text-align: left">When you prepend the keyword struct with &#39;mutable&#39;, you can alter its values.</td></tr></table><h2><a class="nav-anchor" id="Delaring-enumerator-data-types-1" href="#Delaring-enumerator-data-types-1">Delaring enumerator data types</a></h2><p>We could have subscribers who can do different jobs, e.g., calculate the average temperature of a data set, plotting it, or even determine trends. Because we want to define the possible values clearly, we use enumerator data types.</p><pre><code class="language-none">@enum SubscriberType begin
+daisy = Subscriber(&quot;Daisy Duck&quot;, &quot;daisy@duckcity.com&quot;)</code></pre><div class="admonition note"><div class="admonition-title">Note</div><div class="admonition-text"><p>When you prepend the keyword struct with &#39;mutable&#39;, you can alter its values.</p></div></div><h2><a class="nav-anchor" id="Delaring-enumerator-data-types-1" href="#Delaring-enumerator-data-types-1">Delaring enumerator data types</a></h2><p>We could have subscribers who can do different jobs, e.g., calculate the average temperature of a data set, plotting it, or even determine trends. Because we want to define the possible values clearly, we use enumerator data types.</p><pre><code class="language-none">@enum SubscriberType begin
     MEAN_CALCULATOR
     STD_CALCULATOR
     PLOTTER
