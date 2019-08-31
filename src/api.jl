@@ -29,7 +29,7 @@ createPublisher( name::String )::Publisher =
 
 Returns a Publisher object
 - name: name of the Publisher (mandatory)
-- publishertype, see: [`PublisherType()`](@ref)
+- publishertype: PublisherType
 Exception: MissingException
 
 ```
@@ -151,7 +151,6 @@ julia> pyplot()
 
 julia> plot(result)
 ```
-plot(result)```
 """
 sendMessage( p::Publisher, m::Message, f::Function ) = begin
     for subscriber in p.list
@@ -167,12 +166,11 @@ end #defined sendMessage high order function
 Creates a subscriber
 
 # Examples:
-
 ```
 julia> using RbO
 
 julia> createSubscriber( "Micky Mouse" )
-Subscriber("Micky Mouse", "", SUM_CALCULATOR::SubscriberType = 0)
+Subscriber("Micky Mouse", "", MEAN_CALCULATOR::SubscriberType = 0)
 ```
 """
 createSubscriber( name::String ) ::Subscriber =
@@ -188,7 +186,7 @@ Creates a subscriber with an e-mail address
 julia> using RbO
 
 julia> createSubscriber( "Daisy Mouse", "daisy@duckcity.com" )
-Subscriber("Daisy Mouse", "daisy@duckcity.com", SUM_CALCULATOR::SubscriberType = 0)
+Subscriber("Daisy Mouse", "daisy@duckcity.com", MEAN_CALCULATOR::SubscriberType = 0)
 ```
 """
 createSubscriber( name::String, email::String ) ::Subscriber =
@@ -199,13 +197,13 @@ createSubscriber( name::String, email::String ) ::Subscriber =
 
 Creates a subscriber with an e-mail address, and scubscriber type
 
-See also: [`SubscriberType()`](@ref)
+#See also: [`SubscriberType()`](@ref)
 
 # Example
 ```
 julia> using RbO
 
-julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", RbO.PLOTTER )
+julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", PLOTTER )
 Subscriber("Scrooge McDuck", "scrooge@duckcity.com", PLOTTER::SubscriberType = 2)
 ```
 """
