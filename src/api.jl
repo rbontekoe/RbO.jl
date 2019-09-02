@@ -132,8 +132,11 @@ Subscriber("Micky Mouse", "", MEAN_CALCULATOR::SubscriberType = 0))
 julia> chronicals = createPublisher( "the Duck Chronicals", MAGAZINE )
 Publisher("the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[])
 
-julia> chronicals = unsubscribe( chronicals, mickey )
-Publisher("the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[Subscriber("Daisy Mouse", "daisy@duckcity.com", MEAN_CALCULATOR), Subscriber("Scrooge McDuck", "scrooge@duckcity.com", PLOTTER)])
+julia> subscribe( chronicals, mickey )
+Publisher("the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[Subscriber("Micky Mouse", "", MEAN_CALCULATOR)])
+
+jjulia> chronicals = unsubscribe( chronicals, mickey )
+Publisher("the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[])
 """
 unsubscribe( p::Publisher, s::Subscriber  ) =
     Publisher(p.name, p.publishertype, filter(x -> x != ([s] ∩ p.list)[1], p.list))
