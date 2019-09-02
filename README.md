@@ -1,4 +1,6 @@
-# Package for Observer Pattern experiment
+# Package for experimenting with Julia
+
+Version: 0.1.0
 
 I am experimenting with Julia. In the application a publisher sends messages to its subscribers. The message contains temperatures. The status is shown in the table.
 
