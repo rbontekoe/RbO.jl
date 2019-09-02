@@ -50,13 +50,7 @@ end # defined enumerator for Subscriber types
 """
     struct Subscriber
 
-# Arguments
-- name::String
-- email::String
-- subscribertype::SubscriberType
-
-Instanstiation: see: : [`createSubscriber()`](@ref)
-Reference: RbO.Subscriber
+Returns a Subscriber object.
 
 # Example
 ```
@@ -76,13 +70,7 @@ end # defined Scubscriber object
 """
     struct Publisher
 
-# Fields
-- name              ::  String
-- subscribertype    ::  SubscriberType
-- list              ::  Array{Subscriber, 1}
-
-Instanstiate: see: : [`createPublisher()`](@ref)
-Reference: RbO.Publisher
+Returns a Publisher object.
 
 # Example
 ```
@@ -104,13 +92,7 @@ end # defined Publisher object
 """
     struct Message
 
-# Fields
-- header    ::  String
-- subject   ::  String
-- body      ::  Array{Float64, 1}
-
-Instanstiaton: see: : [`createMessage()`](@ref)
-Reference: RbO.Publisher
+Returms a Message object.
 
 # Example
 ```
