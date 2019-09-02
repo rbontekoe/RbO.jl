@@ -50,11 +50,14 @@ end # defined enumerator for Subscriber types
 """
     struct Subscriber
 
-Returns a Subscriber object.
+Returns a Subscriber. It is preferred to use createSubscriber.
 
 # Example
-```
+```jldoctest
+julia> using RbO
+
 julia> daisy = Subscriber("Daisy")
+Subscriber("Daisy", "", MEAN_CALCULATOR::SubscriberType = 0)
 ```
 """
 struct Subscriber
@@ -70,11 +73,13 @@ end # defined Scubscriber object
 """
     struct Publisher
 
-Returns a Publisher object.
+Returns a Publisher object.  It is preferred to use createPublisher.
 
 # Example
-```
-julia> createPublisher("The Duck City Chornicals")
+```jldoctest
+julia> using RbO
+
+julia> chronicals = Publisher("The Duck City Chornicals", NEWSPAPER, Subscriber[])
 Publisher("The Duck City Chornicals", NEWSPAPER::PublisherType = 0, Subscriber[])
 ```
 
@@ -92,11 +97,14 @@ end # defined Publisher object
 """
     struct Message
 
-Returms a Message object.
+Returms a Message object.  It is preferred to use createMessage.
 
 # Example
-```
-message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10.5, 12.7, 10.2] )
+```jldoctest
+julia> using RbO
+
+julia> message = Message( "Weather station", "Temperatures", [10.9, 12, 10.5, 12.7, 10.2] )
+Message("Weather station", "Temperatures", [10.9, 12.0, 10.5, 12.7, 10.2])
 
 ```
 """

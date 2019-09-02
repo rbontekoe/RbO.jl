@@ -10,9 +10,9 @@ export NEWSPAPER, MAGAZINE, SOCIAL_MEDIA
 
 #SUBSCRIPER FUNCTIONS
 """
-    createSubscriber( name::String )
+    createSubscriber( name::String )::Sbubscriber
 
-Creates a subscriber
+Creates a Subscriber.
 
 # Examples:
 ```jldoctest
@@ -26,9 +26,9 @@ createSubscriber( name::String ) ::Subscriber =
     Subscriber( name )
 
 """
-    createSubscriber( name::String, email::String )
+    createSubscriber( name::String, email::String )::Subscriber
 
-Creates a subscriber with an e-mail address
+Creates a Subscriber with an e-mail address.
 
 # Example:
 ```jldoctest
@@ -42,9 +42,9 @@ createSubscriber( name::String, email::String ) ::Subscriber =
     Subscriber( name, email )
 
 """
-    createSubscriber( name::String, email::String, subscribertype::SubscriberType )
+    createSubscriber( name::String, email::String, subscribertype::SubscriberType )::Subscriber
 
-Creates a subscriber with an e-mail address, and scubscriber type
+Creates a Subscriber with a name, an e-mail address, and subscribertype.
 
 # Example
 ```jldoctest
@@ -60,11 +60,16 @@ createSubscriber( name::String, email::String, subscribertype::SubscriberType ):
 ## Publisher functions
 
 """
-    createPublisher( name::String )
+    createPublisher( name::String )::Publisher
+
+Creates a Publisher.
 
 # Examples
 ```jldoctest
 julia> using RbO
+
+julia> nyt = createPublisher("")::Publisher
+ERROR: MissingException: Publisher name is mandatory
 
 julia> nyt = createPublisher( "The New York Times" )
 Publisher("The New York Times", NEWSPAPER::PublisherType = 0, Subscriber[])
@@ -73,10 +78,10 @@ Publisher("The New York Times", NEWSPAPER::PublisherType = 0, Subscriber[])
 createPublisher( name::String )::Publisher =
         name != "" ? Publisher( name, NEWSPAPER, Array{Subscriber}(undef, 0) ) : throw(MissingException("Publisher name is mandatory"))
 
-"""jldoctest
-    createPublisher( name::String, publishertype::PublisherType )
+"""
+    createPublisher( name::String, publishertype::PublisherType )::Publisher
 
-Returns a Publisher object
+Returns a Publisher object.
 
 ```jldoctest
 julia> using RbO
@@ -89,9 +94,9 @@ createPublisher( name::String, publishertype::PublisherType )::Publisher =
         name != "" ? Publisher( name, publishertype, Array{Subscriber}(undef, 0) ) : throw(MissingException("Publisher name is mandatory"))
 
 """
-    subscribe( p::Publisher, s::Subscriber )
+    subscribe( p::Publisher, s::Subscriber )::Publisher
 
-Adds a subscriber to the list with subscribers
+Adds a subscriber to the list with subscribers of a Publisher.
 
 # Example
 ```jldoctest
@@ -118,16 +123,16 @@ subscribe( p::Publisher, s::Subscriber ) =
     Publisher( p.name, p.publishertype, push!( p.list, s ) )
 
 """
-    unsubscribe( p::Publisher, s::Subscriber )
+    unsubscribe( p::Publisher, s::Subscriber )::Publisher
 
-Removes a subscriber from the list
+Removes a subscriber from the list of subscribers of a Publisher,
 
 # Example
-```
+```jldoctest
 julia> using RbO
 
 julia> mickey = createSubscriber( "Micky Mouse" )
-Subscriber("Micky Mouse", "", MEAN_CALCULATOR::SubscriberType = 0))
+Subscriber("Micky Mouse", "", MEAN_CALCULATOR::SubscriberType = 0)
 
 julia> chronicals = createPublisher( "the Duck Chronicals", MAGAZINE )
 Publisher("the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[])
@@ -135,17 +140,18 @@ Publisher("the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[])
 julia> subscribe( chronicals, mickey )
 Publisher("the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[Subscriber("Micky Mouse", "", MEAN_CALCULATOR)])
 
-jjulia> chronicals = unsubscribe( chronicals, mickey )
+julia> chronicals = unsubscribe( chronicals, mickey )
 Publisher("the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[])
+```
 """
-unsubscribe( p::Publisher, s::Subscriber  ) =
+unsubscribe( p::Publisher, s::Subscriber  )::Publisher =
     Publisher(p.name, p.publishertype, filter(x -> x != ([s] ∩ p.list)[1], p.list))
 
 # MESSAGE FUNCTIONS
 """
-    createMessage(header::String, subject::String, body::Array{Float64, 1})
+    createMessage(header::String, subject::String, body::Array{Float64, 1})::Message
 
-Create a message for subscribers
+Create a Message for the subscribers of a publisher.
 
 # Example
 
@@ -156,7 +162,7 @@ julia> message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10
 Message("Weather station", "Temperatures", [10.9, 12.0, 10.5, 12.7, 10.2])
 ```
 """
-createMessage( header::String, subject::String, body::Array{Float64, 1} ) =
+createMessage( header::String, subject::String, body::Array{Float64, 1} )::Message =
     Message( header, subject, body )
 
 """

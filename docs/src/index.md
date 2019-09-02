@@ -5,7 +5,7 @@
 ## Introduction
 Recently I focussed on the Julia programming language again. To get more experience, I created the project 'rbontekoe/RbO.jl.'
 
-Also, I decided to use Documenter.jl as Julia package to create the documentation for the project, after looking at a [video] (https://www.youtube.com/watch?v=m3c8Z6HBn48) that explains its features. I was impressed when Morton Phiibleht told about the possibility to test the code example automatically during the creation of the manual. The result is this manual.
+Also, I decided to use Documenter.jl to create the documentation for the project, after looking at a [video] (https://www.youtube.com/watch?v=m3c8Z6HBn48) that explains its features. I was impressed when Morton Phiibleht told about the possibility to test the code example automatically during the creation of the manual. The result is this manual.
 
 For the creation of the Julia notebook, I used Literate.jl, after watching this [video](https://www.youtube.com/watch?v=Tfp1WEdYfqk&t=333s).
 
@@ -72,8 +72,8 @@ subscribe
 ```@docs
 unsubscribe
 ```
-!!!note
-    Publisher is an immutable object. 'unscubscribe' creates a new Publisher object, and is reassigned to the variable 'nyt'.
+!!! note
+    Publisher is an immutable object. 'unscubscribe' creates a new Publisher object, and is reassigned to the variable 'chronicals'.
 
 
 ## createMessage
@@ -101,45 +101,6 @@ Publisher
 ```@docs
 Message
 ```
-
-# TEST (jldoctest)
-```
-julia> using RbO
-
-julia> nyt = createPublisher( "NYT" )
-Publisher("NYT", NEWSPAPER::PublisherType = 0, Subscriber[])
-
-julia> scrooge = createSubscriber( "Scrooge McDuck" , "scrooge@duckcity.com" )
-Subscriber("Scrooge McDuck", "scrooge@duckcity.com", MEAN_CALCULATOR::SubscriberType = 0)
-
-julia> subscribe(nyt, scrooge)
-Publisher("NYT", NEWSPAPER::PublisherType = 0, Subscriber[Subscriber("Scrooge McDuck", "scrooge@duckcity.com", MEAN_CALCULATOR)])
-
-julia> message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10.5, 12.7, 10.2] )
-Message("Weather station", "Temperatures", [10.9, 12.0, 10.5, 12.7, 10.2])
-
-julia> result = []
-0-element Array{Any,1}
-
-julia> function processMessage( s::Subscriber, n::Publisher, m::Message )
-           if s.subscribertype == MEAN_CALCULATOR
-               println( s.name * " - the sum of the last five temperatures is: " * string(sum(m.body)) )
-           elseif s.subscribertype == STD_CALCULATOR
-               println( s.name * " - the average temperature of the last five temperatures is: " * string(sum(m.body) / length(m.body)) )
-           elseif s.subscribertype == PLOTTER
-               println( s.name * " - the dataset with temperatures is: " * string(m.body))
-               global result = m.body
-           end
-       end
-processMessage (generic function with 1 method)
-
-julia> sendMessage( nyt, message, processMessage )
-Scrooge McDuck - the sum of the last five temperatures is: 56.3
-```
-
-
-
-
 
 # Examples
 
@@ -207,6 +168,9 @@ end
 # ### Notify scubscribers
 sendMessage( chronicals, message, processMessage )
 
+# ### Plot data
+plot( result )
+
 ```
 
 ## make.jl
@@ -222,13 +186,16 @@ makedocs(
     format = Documenter.HTML(),
     modules = [RbO],
     pages = [
-        "User Manual" => "index.md"
+        "User Manual" => "index.md",
+        "Building applications with Julia" => "course.md"
     ]
 )
 ```
 
 ## doc.jl
+
 Code to create the Julia Notebook
+
 ```
 # Uncomment the next line when RbO has been cloned.
 #push!(LOAD_PATH, "/home/rob/julia_projects/RbO.jl/src/")
