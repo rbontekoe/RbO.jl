@@ -10,4 +10,3 @@ Temp: see: [`PublisherType()`](@ref)
 | &#10004; | Create User Manual (using Documenter.jl), see https://rbontekoe.github.io/RbO.jl |
 |          | Create Tutorial 'Building applications with Julia', see https://rbontekoe.github.io/RbO.jl/course/  |
 |          | Create Tutorial 'Using Julia over the network'  |
-|          | Create Tutorial 'Dockerize Julia' |
