@@ -2,7 +2,7 @@
 include("domain.jl")
 
 ### Domain objects
-export Subscriber, Publisher, Message
+export Subscriber, Publisher, Message, SubscriberType, PublisherType
 ### SubscriberType Values
 export MEAN_CALCULATOR, STD_CALCULATOR, PLOTTER
 ### PublisherType Values
