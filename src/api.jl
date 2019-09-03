@@ -44,7 +44,7 @@ createSubscriber( name::String, email::String ) ::Subscriber =
 """
     createSubscriber( name::String, email::String, subscribertype::SubscriberType )::Subscriber
 
-Creates a Subscriber with a name, an e-mail address, and subscribertype.
+Creates a Subscriber with a name, an e-mail address, and [SubscriberType] (@ref).
 
 # Example
 ```jldoctest

@@ -1,3 +1,4 @@
+#push!(LOAD_PATH, "/home/rob/julia_projects/RbO.jl/src/")
 using Documenter
 using RbO, Statistics
 using Test
@@ -9,10 +10,11 @@ makedocs(
     format = Documenter.HTML(),
     modules = [RbO],
     pages = [
-        "User Manual" => "index.md",
-        "Building applications with Julia" => "course.md"
+        "User Manual" => "index.md"
     ]
 )
+
+# "Building applications with Julia" => "course.md"
 
 #=deploydocs(
     repo = "github/rbontekoe/RbO.jl.git"
