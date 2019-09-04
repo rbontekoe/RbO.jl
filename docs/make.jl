@@ -10,7 +10,11 @@ makedocs(
     format = Documenter.HTML(),
     modules = [RbO],
     pages = [
-        "User Manual" => "index.md"
+        "User Manual" => "index.md",
+        "Installing the module" => "module_a.md",
+        "API" => "module_b.md",
+        "Domain Items" => "module_c.md",
+        "Examples" => "module_d.md"
     ]
 )
 
