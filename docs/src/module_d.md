@@ -112,3 +112,5 @@ See: <https://github.com/rbontekoe/RbO.jl/blob/master/test.ipynb>
 
 ## References
 - [Parallel & Distributed Computing] (https://github.com/crstnbr/JuliaWorkshop19/blob/master/3_Three/1_parallel_computing.ipynb)
+
+- [Announcing composable multi-threaded parallelism in Julia] (https://julialang.org/blog/2019/07/multithreading)
