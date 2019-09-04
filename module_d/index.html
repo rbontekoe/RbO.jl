@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Examples · RbO.jl</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link href="../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><a href="../"><img class="logo" src="../assets/logo.png" alt="RbO.jl logo"/></a><h1>RbO.jl</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../">User Manual</a></li><li><a class="toctext" href="../module_a/">Installing the module</a></li><li><a class="toctext" href="../module_b/">API</a></li><li><a class="toctext" href="../module_c/">Domain Items</a></li><li class="current"><a class="toctext" href>Examples</a><ul class="internal"><li><a class="toctext" href="#test.jl-1">test.jl</a></li><li><a class="toctext" href="#make.jl-1">make.jl</a></li><li><a class="toctext" href="#doc.jl-1">doc.jl</a></li><li><a class="toctext" href="#Julia-Notebook-1">Julia Notebook</a></li><li><a class="toctext" href="#References-1">References</a></li></ul></li></ul></nav><article id="docs"><header><nav><ul><li><a href>Examples</a></li></ul><a class="edit-page" href="https://github.com/rbontekoe/RbO.jl/blob/master/docs/src/module_d.md"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Examples</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Examples-1" href="#Examples-1">Examples</a></h1><h2><a class="nav-anchor" id="test.jl-1" href="#test.jl-1">test.jl</a></h2><p>Code to test RbO</p><pre><code class="language-julia">using RbO, Plots, Statistics
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Examples · RbO.jl</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link href="../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><a href="../"><img class="logo" src="../assets/logo.png" alt="RbO.jl logo"/></a><h1>RbO.jl</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../">User Manual</a></li><li><a class="toctext" href="../module_a/">Installing the module</a></li><li><a class="toctext" href="../module_b/">API</a></li><li><a class="toctext" href="../module_c/">Domain Items</a></li><li class="current"><a class="toctext" href>Examples</a><ul class="internal"><li><a class="toctext" href="#test.jl-1">test.jl</a></li><li><a class="toctext" href="#make.jl-1">make.jl</a></li><li><a class="toctext" href="#doc.jl-1">doc.jl</a></li><li><a class="toctext" href="#Julia-Notebook-1">Julia Notebook</a></li><li><a class="toctext" href="#References-1">References</a></li></ul></li></ul></nav><article id="docs"><header><nav><ul><li><a href>Examples</a></li></ul><a class="edit-page" href="https://github.com/rbontekoe/RbO.jl/blob/master/docs/src/module_d.md"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Examples</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Examples-1" href="#Examples-1">Examples</a></h1><h2><a class="nav-anchor" id="test.jl-1" href="#test.jl-1">test.jl</a></h2><p>Code to test RbO.jl</p><pre><code class="language-julia">using RbO, Plots, Statistics
 pyplot()
 
 # ### Create subscribers
@@ -60,21 +60,24 @@ sendMessage( chronicals, message, processMessage )
 
 # ### Plot data
 plot( result )
-</code></pre><h2><a class="nav-anchor" id="make.jl-1" href="#make.jl-1">make.jl</a></h2><pre><code class="language-none">using Documenter
+</code></pre><h2><a class="nav-anchor" id="make.jl-1" href="#make.jl-1">make.jl</a></h2><p>Script to create the User Manual</p><pre><code class="language-none">using Documenter
 using RbO, Statistics
 using Test
 
 doctest(RbO)
 
 makedocs(
-    sitename = &quot;RbO&quot;,
+    sitename = &quot;RbO.jl&quot;,
     format = Documenter.HTML(),
     modules = [RbO],
     pages = [
         &quot;User Manual&quot; =&gt; &quot;index.md&quot;,
-        &quot;Building applications with Julia&quot; =&gt; &quot;course.md&quot;
+        &quot;Installing the module&quot; =&gt; &quot;module_a.md&quot;,
+        &quot;API&quot; =&gt; &quot;module_b.md&quot;,
+        &quot;Domain Items&quot; =&gt; &quot;module_c.md&quot;,
+        &quot;Examples&quot; =&gt; &quot;module_d.md&quot;
     ]
-)</code></pre><h2><a class="nav-anchor" id="doc.jl-1" href="#doc.jl-1">doc.jl</a></h2><p>Code to create the Julia Notebook</p><pre><code class="language-Julia"># Uncomment the next line when RbO has been cloned.
+)</code></pre><h2><a class="nav-anchor" id="doc.jl-1" href="#doc.jl-1">doc.jl</a></h2><p>Script to create the Julia Notebook</p><pre><code class="language-Julia"># Uncomment the next line when RbO has been cloned.
 #push!(LOAD_PATH, &quot;/home/rob/julia_projects/RbO.jl/src/&quot;)
 include(&quot;./test.jl&quot;)
 using Literate
