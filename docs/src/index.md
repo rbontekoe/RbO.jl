@@ -1,8 +1,7 @@
-# RbO.jl
+# User Manual
 
-# Home
+## Contents
 ```@contents
-Pages = ["index.md"]
 Depth = 3
 ```
 

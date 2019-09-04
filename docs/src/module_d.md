@@ -2,7 +2,7 @@
 
 ## test.jl
 
-Code to test RbO
+Code to test RbO.jl
 
 ```julia
 using RbO, Plots, Statistics
@@ -70,6 +70,9 @@ plot( result )
 ```
 
 ## make.jl
+
+Script to create the User Manual
+
 ```
 using Documenter
 using RbO, Statistics
@@ -78,19 +81,22 @@ using Test
 doctest(RbO)
 
 makedocs(
-    sitename = "RbO",
+    sitename = "RbO.jl",
     format = Documenter.HTML(),
     modules = [RbO],
     pages = [
         "User Manual" => "index.md",
-        "Building applications with Julia" => "course.md"
+        "Installing the module" => "module_a.md",
+        "API" => "module_b.md",
+        "Domain Items" => "module_c.md",
+        "Examples" => "module_d.md"
     ]
 )
 ```
 
 ## doc.jl
 
-Code to create the Julia Notebook
+Script to create the Julia Notebook
 
 ```Julia
 # Uncomment the next line when RbO has been cloned.
