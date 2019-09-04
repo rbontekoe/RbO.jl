@@ -6,7 +6,7 @@ using Test
 doctest(RbO)
 
 makedocs(
-    sitename = "RbO",
+    sitename = "RbO.jl",
     format = Documenter.HTML(),
     modules = [RbO],
     pages = [
