@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>API · RbO.jl</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link href="../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><a href="../"><img class="logo" src="../assets/logo.png" alt="RbO.jl logo"/></a><h1>RbO.jl</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../">User Manual</a></li><li><a class="toctext" href="../module_a/">Installing the module</a></li><li class="current"><a class="toctext" href>API</a><ul class="internal"><li><a class="toctext" href="#Exports-1">Exports</a></li><li><a class="toctext" href="#createSubscriber-1">createSubscriber</a></li><li><a class="toctext" href="#createPublisher-1">createPublisher</a></li><li><a class="toctext" href="#subscribe-1">subscribe</a></li><li><a class="toctext" href="#unsubscribe-1">unsubscribe</a></li><li><a class="toctext" href="#createMessage-1">createMessage</a></li><li><a class="toctext" href="#sendMessage-1">sendMessage</a></li></ul></li><li><a class="toctext" href="../module_c/">Domain Items</a></li><li><a class="toctext" href="../module_d/">Examples</a></li></ul></nav><article id="docs"><header><nav><ul><li><a href>API</a></li></ul><a class="edit-page" href="https://github.com/rbontekoe/RbO.jl/blob/master/docs/src/module_b.md"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>API</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Public-interface-1" href="#Public-interface-1">Public interface</a></h1><p>I have taken the Observer Pattern as the goal to implement the project. The main objects are Publisher and Subscriber. The Publisher delivers a message to the Subscribers. The information consists of temperatures that were measured.</p><h2><a class="nav-anchor" id="Exports-1" href="#Exports-1">Exports</a></h2><p><strong>API methods</strong></p><ul><li>createSubscriber, createPublisher, createMessage, sendMessage</li></ul><p><strong>Domain objects</strong></p><ul><li>Subscriber, Publisher, Message</li></ul><p><strong>SubscriberType values</strong></p><ul><li>MEAN_CALCULATOR, STD_CALCULATOR, PLOTTER</li></ul><p><strong>PublisherType values</strong></p><ul><li>NEWSPAPER, MAGAZINE, SOCIAL_MEDIA</li></ul><h2><a class="nav-anchor" id="createSubscriber-1" href="#createSubscriber-1">createSubscriber</a></h2><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="RbO.createSubscriber" href="#RbO.createSubscriber"><code>RbO.createSubscriber</code></a> — <span class="docstring-category">Function</span>.</div><div><div><pre><code class="language-julia">createSubscriber( name::String )::Sbubscriber</code></pre><p>Creates a Subscriber.</p><p><strong>Examples:</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; mickey = createSubscriber( &quot;Micky Mouse&quot; )
+Subscriber(&quot;Micky Mouse&quot;, &quot;&quot;, MEAN_CALCULATOR::SubscriberType = 0)</code></pre></div></div><a class="source-link" target="_blank" href="https://github.com/rbontekoe/RbO.jl/blob/345e7c1518a4557e634cc4bcb9b9b54ed5668f69/src/api.jl#L12-L24">source</a><div><div><pre><code class="language-none">createSubscriber( name::String, email::String )::Subscriber</code></pre><p>Creates a Subscriber with an e-mail address.</p><p><strong>Example:</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; daisy = createSubscriber( &quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot; )
+Subscriber(&quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR::SubscriberType = 0)</code></pre></div></div><a class="source-link" target="_blank" href="https://github.com/rbontekoe/RbO.jl/blob/345e7c1518a4557e634cc4bcb9b9b54ed5668f69/src/api.jl#L28-L40">source</a><div><div><pre><code class="language-none">createSubscriber( name::String, email::String, subscribertype::SubscriberType )::Subscriber</code></pre><p>Creates a Subscriber with a name, an e-mail address, and <a href="../module_c/#SubscriberType-1">SubscriberType</a>.</p><p><strong>Example</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; scrooge = createSubscriber( &quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER )
+Subscriber(&quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER::SubscriberType = 2)</code></pre></div></div><a class="source-link" target="_blank" href="https://github.com/rbontekoe/RbO.jl/blob/345e7c1518a4557e634cc4bcb9b9b54ed5668f69/src/api.jl#L44-L56">source</a></section><h2><a class="nav-anchor" id="createPublisher-1" href="#createPublisher-1">createPublisher</a></h2><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="RbO.createPublisher" href="#RbO.createPublisher"><code>RbO.createPublisher</code></a> — <span class="docstring-category">Function</span>.</div><div><div><pre><code class="language-julia">createPublisher( name::String )::Publisher</code></pre><p>Creates a Publisher.</p><p><strong>Examples</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; nyt = createPublisher(&quot;&quot;)::Publisher
+ERROR: MissingException: Publisher name is mandatory
+
+julia&gt; nyt = createPublisher( &quot;The New York Times&quot; )
+Publisher(&quot;The New York Times&quot;, NEWSPAPER::PublisherType = 0, Subscriber[])</code></pre></div></div><a class="source-link" target="_blank" href="https://github.com/rbontekoe/RbO.jl/blob/345e7c1518a4557e634cc4bcb9b9b54ed5668f69/src/api.jl#L62-L77">source</a><div><div><pre><code class="language-none">createPublisher( name::String, publishertype::PublisherType )::Publisher</code></pre><p>Returns a Publisher object.</p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; chronicals = createPublisher( &quot;the Duck Chronicals&quot;, MAGAZINE )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[])</code></pre></div></div><a class="source-link" target="_blank" href="https://github.com/rbontekoe/RbO.jl/blob/345e7c1518a4557e634cc4bcb9b9b54ed5668f69/src/api.jl#L81-L92">source</a></section><h2><a class="nav-anchor" id="subscribe-1" href="#subscribe-1">subscribe</a></h2><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="RbO.subscribe" href="#RbO.subscribe"><code>RbO.subscribe</code></a> — <span class="docstring-category">Function</span>.</div><div><div><pre><code class="language-julia">subscribe( p::Publisher, s::Subscriber )::Publisher</code></pre><p>Adds a subscriber to the list with subscribers of a Publisher.</p><p><strong>Example</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; daisy = createSubscriber( &quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot; )
+Subscriber(&quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR::SubscriberType = 0)
+
+julia&gt; scrooge = createSubscriber( &quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER )
+Subscriber(&quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER::SubscriberType = 2)
+
+julia&gt; chronicals = createPublisher( &quot;the Duck Chronicals&quot;, MAGAZINE )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[])
+
+julia&gt; subscribe( chronicals, daisy )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[Subscriber(&quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR)])
+
+julia&gt; subscribe( chronicals, scrooge )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[Subscriber(&quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR), Subscriber(&quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER)])
+</code></pre></div></div><a class="source-link" target="_blank" href="https://github.com/rbontekoe/RbO.jl/blob/345e7c1518a4557e634cc4bcb9b9b54ed5668f69/src/api.jl#L96-L121">source</a></section><h2><a class="nav-anchor" id="unsubscribe-1" href="#unsubscribe-1">unsubscribe</a></h2><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="RbO.unsubscribe" href="#RbO.unsubscribe"><code>RbO.unsubscribe</code></a> — <span class="docstring-category">Function</span>.</div><div><div><pre><code class="language-julia">unsubscribe( p::Publisher, s::Subscriber )::Publisher</code></pre><p>Removes a subscriber from the list of subscribers of a Publisher,</p><p><strong>Example</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; mickey = createSubscriber( &quot;Micky Mouse&quot; )
+Subscriber(&quot;Micky Mouse&quot;, &quot;&quot;, MEAN_CALCULATOR::SubscriberType = 0)
+
+julia&gt; chronicals = createPublisher( &quot;the Duck Chronicals&quot;, MAGAZINE )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[])
+
+julia&gt; subscribe( chronicals, mickey )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[Subscriber(&quot;Micky Mouse&quot;, &quot;&quot;, MEAN_CALCULATOR)])
+
+julia&gt; chronicals = unsubscribe( chronicals, mickey )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[])</code></pre></div></div><a class="source-link" target="_blank" href="https://github.com/rbontekoe/RbO.jl/blob/345e7c1518a4557e634cc4bcb9b9b54ed5668f69/src/api.jl#L125-L146">source</a></section><div class="admonition note"><div class="admonition-title">Note</div><div class="admonition-text"><p>Publisher is an immutable object. &#39;unscubscribe&#39; creates a new Publisher object, and is reassigned to the variable &#39;chronicals&#39;.</p></div></div><h2><a class="nav-anchor" id="createMessage-1" href="#createMessage-1">createMessage</a></h2><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="RbO.createMessage" href="#RbO.createMessage"><code>RbO.createMessage</code></a> — <span class="docstring-category">Function</span>.</div><div><div><pre><code class="language-julia">createMessage(header::String, subject::String, body::Array{Float64, 1})::Message</code></pre><p>Create a Message for the subscribers of a publisher.</p><p><strong>Example</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO
+
+julia&gt; message = createMessage( &quot;Weather station&quot;, &quot;Temperatures&quot;, [10.9, 12, 10.5, 12.7, 10.2] )
+Message(&quot;Weather station&quot;, &quot;Temperatures&quot;, [10.9, 12.0, 10.5, 12.7, 10.2])</code></pre></div></div><a class="source-link" target="_blank" href="https://github.com/rbontekoe/RbO.jl/blob/345e7c1518a4557e634cc4bcb9b9b54ed5668f69/src/api.jl#L151-L164">source</a></section><h2><a class="nav-anchor" id="sendMessage-1" href="#sendMessage-1">sendMessage</a></h2><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="RbO.sendMessage" href="#RbO.sendMessage"><code>RbO.sendMessage</code></a> — <span class="docstring-category">Function</span>.</div><div><div><pre><code class="language-julia">sendMessage( n::Publisher, m::Message, f::Function )</code></pre><p>Notifies subscribers</p><p><strong>Example</strong></p><pre><code class="language-julia-repl">julia&gt; using RbO, Statistics
+
+julia&gt; daisy = createSubscriber( &quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot; )
+Subscriber(&quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR::SubscriberType = 0)
+
+julia&gt; scrooge = createSubscriber( &quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER )
+Subscriber(&quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER::SubscriberType = 2)
+
+julia&gt; chronicals = createPublisher( &quot;the Duck Chronicals&quot;, MAGAZINE )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[])
+
+julia&gt; subscribe( chronicals, daisy )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[Subscriber(&quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR)])
+
+julia&gt; subscribe( chronicals, scrooge )
+Publisher(&quot;the Duck Chronicals&quot;, MAGAZINE::PublisherType = 1, Subscriber[Subscriber(&quot;Daisy Mouse&quot;, &quot;daisy@duckcity.com&quot;, MEAN_CALCULATOR), Subscriber(&quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER)])
+
+julia&gt; message = createMessage( &quot;Weather station&quot;, &quot;Temperatures&quot;, [10.9, 12, 10.5, 12.7, 10.2] )
+Message(&quot;Weather station&quot;, &quot;Temperatures&quot;, [10.9, 12.0, 10.5, 12.7, 10.2])
+
+julia&gt; result = []
+0-element Array{Any,1}
+
+julia&gt; processMessage( s::Subscriber, n::Publisher, m::Message ) = begin
+           if s.subscribertype == STD_CALCULATOR
+               println( s.name * &quot;: the standard deviation of the last five temperatures is: &quot; * string( round( std(m.body); digits=2) ) * &quot; °C&quot; )
+           elseif s.subscribertype == MEAN_CALCULATOR
+               println( s.name * &quot;: the average of the last five temperatures is: &quot; * string( mean( m.body ) ) * &quot; °C&quot; )
+           elseif s.subscribertype == PLOTTER
+               println( s.name * &quot;: the dataset with the last five temperatures is: &quot; * string( m.body ) )
+               global result = m.body
+           end
+       end
+processMessage (generic function with 1 method)
+
+julia&gt; sendMessage( chronicals, message, processMessage )
+Daisy Mouse: the average of the last five temperatures is: 11.26 °C
+Scrooge McDuck: the dataset with the last five temperatures is: [10.9, 12.0, 10.5, 12.7, 10.2]</code></pre></div></div><a class="source-link" target="_blank" href="https://github.com/rbontekoe/RbO.jl/blob/345e7c1518a4557e634cc4bcb9b9b54ed5668f69/src/api.jl#L168-L215">source</a></section><footer><hr/><a class="previous" href="../module_a/"><span class="direction">Previous</span><span class="title">Installing the module</span></a><a class="next" href="../module_c/"><span class="direction">Next</span><span class="title">Domain Items</span></a></footer></article></body></html>
