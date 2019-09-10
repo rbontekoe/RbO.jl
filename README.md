@@ -8,5 +8,6 @@ Temp: see: [`PublisherType()`](@ref)
 
 | Status   | Activity                                   |
 | :---     | :---
-| &#10004; | Create Julia Notebook 'test.ipynb' as an example (using Literate.jl) |
-| &#10004; | Create User Manual (using Documenter.jl), see https://rbontekoe.github.io/RbO.jl |
+| &#10004; | Create Julia Notebook 'test.ipynb' as an example (using Literate.jl). |
+| &#10004; | Create User Manual (using Documenter.jl), see https://rbontekoe.github.io/RbO.jl. |
+| &#10004; | Added database methods.

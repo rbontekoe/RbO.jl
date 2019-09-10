@@ -12,7 +12,7 @@ makedocs(
     pages = [
         "User Manual" => "index.md",
         "Installing the module" => "module_a.md",
-        "API" => "module_b.md",
+        "API methods" => "module_b.md",
         "Database methods" => "module_b2.md",
         "Domain Items" => "module_c.md",
         "Examples" => "module_d.md"
