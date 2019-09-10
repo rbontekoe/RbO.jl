@@ -48,7 +48,7 @@ connect() = SQLite.DB()::SQLite.DB
 Store subscribes in a database table.
 
 # Example
-```
+```julia
 julia> using RbO
 
 julia> daisy = createSubscriber( "Daisy" )
@@ -80,7 +80,7 @@ end # end create
 Store publishers in a database table.
 
 # Exampple
-```
+```julia
 julia> using RbO
 
 julia> nyt = createPublisher( "The New York Times" )
@@ -121,7 +121,7 @@ end # end create
 
 Returns a dataframe with all entries
 
-```
+```julia
 julia> using RbO
 
 julia> daisy = createSubscriber( "Daisy" )
@@ -202,7 +202,7 @@ createDatabaseItem( item::Any, agent::String, action::String ) = DatabaseItem( t
 Update subscribers in a database table.
 
 # Example
-```juia
+```Julia
 julia> using RbO
 
 julia> daisy = createSubscriber( "Daisy" )
