@@ -18,5 +18,5 @@ Step | Action | Comment |
 | 3 | $ git clone https://github.com/rbontekoe/RbO.jl.git |  Download the package RbO. |
 | 4 | $ cd RbO.jl | Go to RbO.jl directory. |
 | 5 | $ julia | Start Julia |
-| 6 | julia> push!(LOAD_PATH, "/home/rob/julia_projects/RbO.jl/src/") | Declare path. |
+| 6 | julia> push!(LOAD_PATH, "/home/rob/julia\_projects/RbO.jl/src/") | Declare path. |
 | 7 | julia> using RbO | Activate package |

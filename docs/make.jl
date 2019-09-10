@@ -1,4 +1,4 @@
-#push!(LOAD_PATH, "/home/rob/julia_projects/RbO.jl/src/")
+# push!(LOAD_PATH, "/home/rob/julia_projects/RbO.jl/src/")
 using Documenter
 using RbO, Statistics
 using Test
@@ -13,6 +13,7 @@ makedocs(
         "User Manual" => "index.md",
         "Installing the module" => "module_a.md",
         "API" => "module_b.md",
+        "Database methods" => "module_b2.md",
         "Domain Items" => "module_c.md",
         "Examples" => "module_d.md"
     ]

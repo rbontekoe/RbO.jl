@@ -1,4 +1,4 @@
-# Public interface
+# API
 I have taken the Observer Pattern as the goal to implement the project. The main objects are Publisher and Subscriber. The Publisher delivers a message to the Subscribers. The information consists of temperatures that were measured.
 
 ## Exports
@@ -16,9 +16,19 @@ I have taken the Observer Pattern as the goal to implement the project. The main
 createSubscriber
 ```
 
+## updateSubscriber
+```@docs
+updateSubscriber
+```
+
 ## createPublisher
 ```@docs
 createPublisher
+```
+
+## updatePublisher
+```@docs
+updatePublisher
 ```
 
 ## subscribe
@@ -33,10 +43,14 @@ unsubscribe
 !!! note
     Publisher is an immutable object. 'unscubscribe' creates a new Publisher object, and is reassigned to the variable 'chronicals'.
 
-
 ## createMessage
 ```@docs
 createMessage
+```
+
+## updateMessage
+```@docs
+updateMessage
 ```
 
 ## sendMessage
