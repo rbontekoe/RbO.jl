@@ -91,13 +91,6 @@ SQLite.DB(in-memory)
 
 julia> create(db, "publishers", [ nyt ])
 "publishers"
-
-julia> gather( db, "publishers" )
-1×5 DataFrames.DataFrame
-│ Row │ time      │ agent   │ action  │ key                  │ item                                                                             │
-│     │ Float64⍰  │ String⍰ │ String⍰ │ String⍰              │ Union{Missing, Publisher}                                                        │
-├─────┼───────────┼─────────┼─────────┼──────────────────────┼──────────────────────────────────────────────────────────────────────────────────┤
-│ 1   │ 1.56812e9 │ AB9F    │ CREATE  │ 16372046879139874576 │ Publisher("16372046879139874576", "The New York Times", NEWSPAPER, Subscriber[]) │
 ```
 """
 create( db::SQLite.DB, table::String, domainItems::Array{Publisher, 1} ) = begin
@@ -130,15 +123,10 @@ Subscriber("14400338531749444750", "Daisy", "", MEAN_CALCULATOR::SubscriberType 
 julia> mickey = createSubscriber( "Mickey" )
 Subscriber("7987502302757180929", "Mickey", "", MEAN_CALCULATOR::SubscriberType = 0)
 
-julia> data = [ daisy, mickey ]
-2-element Array{Subscriber,1}:
- Subscriber("14400338531749444750", "Daisy", "", MEAN_CALCULATOR::SubscriberType = 0)
- Subscriber("7987502302757180929", "Mickey", "", MEAN_CALCULATOR::SubscriberType = 0)
-
 julia> db = connect()
 SQLite.DB(in-memory)
 
-julia> create( db, "subscribers", data )
+julia> create( db, "subscribers", [ daisy, mickey ] )
 "subscribers"
 
 julia> gather(db, "subscribers")
@@ -173,12 +161,7 @@ Subscriber("8580492032810188742", "Mickey", "", MEAN_CALCULATOR::SubscriberType 
 julia> db = connect()
 SQLite.DB(in-memory)
 
-julia> data = [ daisy, mickey ]
-2-element Array{Subscriber,1}:
- Subscriber("5270518311956369638", "Daisy", "", MEAN_CALCULATOR::SubscriberType = 0)
- Subscriber("8580492032810188742", "Mickey", "", MEAN_CALCULATOR::SubscriberType = 0)
-
-julia> create( db, "subscribers", data )
+julia> create( db, "subscribers", [ daisy, mickey ] )
  "subscribers"
 
 julia> gather( db, "subscribers", "key = '" * daisy.id * "'" )
@@ -214,12 +197,7 @@ Subscriber("8580492032810188742", "Mickey", "", MEAN_CALCULATOR::SubscriberType 
 julia> db = connect()
 SQLite.DB(in-memory)
 
-julia> data = [ daisy, mickey ]
-2-element Array{Subscriber,1}:
- Subscriber("5270518311956369638", "Daisy", "", MEAN_CALCULATOR::SubscriberType = 0)
- Subscriber("8580492032810188742", "Mickey", "", MEAN_CALCULATOR::SubscriberType = 0)
-
-julia> create( db, "subscribers", data )
+julia> create( db, "subscribers", [ daisy, mickey ] )
  "subscribers"
 
 julia> gather( db, "subscribers", "key = '" * daisy.id * "'" )
