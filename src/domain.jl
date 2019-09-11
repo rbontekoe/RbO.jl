@@ -53,7 +53,7 @@ end # defined enumerator for Publisher types
 end # defined enumerator for Subscriber types
 
 """
-    struct Subscriber
+    struct Subscriber <: DomainObject
 
 Returns a Subscriber. It is preferred to use createSubscriber.
 
@@ -79,7 +79,7 @@ struct Subscriber <: DomainObject
 end # defined Scubscriber object
 
 """
-    struct Publisher
+    struct Publisher <: DomainObject
 
 Returns a Publisher object.  It is preferred to use createPublisher.
 
@@ -106,7 +106,7 @@ struct Publisher <: DomainObject
 end # defined Publisher object
 
 """
-    struct Message
+    struct Message <: Information
 
 Returns a Message object.  It is preferred to use createMessage.
 
