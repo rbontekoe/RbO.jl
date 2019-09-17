@@ -15,7 +15,7 @@ For the creation of the Julia notebook, I used Literate.jl, after watching this 
 ## Logbook
 
 #### 9/17/2019
-Again, I looked at CQRS and Event Sourcing. I discovered the package Serialization. With the method serialize, you can create a text representation of an object, that you can store. With deserialize, you do the reverse. Serialize writes to an IOStream, and deserialize reads from it. An IOStream can be an IOBuffer or a file. It makes Event Sourcing easier.
+Reading [Think Julia] (https://benlauwens.github.io/ThinkJulia.jl/latest/book.html#_serialization) I discovered the package Serialization. While playing with it, I realized that it could solve my CQRS and Event Sourcing problem. With the method serialize, you can create a text representation of an object, that you can store. With deserialize, you do the reverse. Serialize writes to an IOStream, and deserialize reads from it. An IOStream can be an IOBuffer or a file. It makes Event Sourcing easier.
 
 I also looked at channels. You can use channels to communicate between processes. For the time being, I will use inter CPU-core communication. Later on, I extend it to remote nodes. I only have to expand the methods of createSubscriber and createPublisher.
 
