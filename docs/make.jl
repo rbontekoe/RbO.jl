@@ -15,7 +15,7 @@ makedocs(
         "Public Interface" => [
             "API methods" => "module_b.md",
             "Database methods" => "module_b2.md",
-            "Domain Items" => "module_c.md"
+            "Domain items" => "module_c.md"
         ],
         "Examples" => "module_d.md"
     ]
