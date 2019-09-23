@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Example · RbO.jl</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link href="../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><a href="../"><img class="logo" src="../assets/logo.png" alt="RbO.jl logo"/></a><h1>RbO.jl</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../">User Manual</a></li><li><a class="toctext" href="../module_a/">Installing the module</a></li><li><span class="toctext">Public Interface</span><ul><li><a class="toctext" href="../module_b/">API methods</a></li><li><a class="toctext" href="../module_b2/">Infrascructure methods</a></li><li><a class="toctext" href="../module_c/">Domain items</a></li><li class="current"><a class="toctext" href>Example</a><ul class="internal"></ul></li></ul></li><li><a class="toctext" href="../module_d/">Examples</a></li></ul></nav><article id="docs"><header><nav><ul><li>Public Interface</li><li><a href>Example</a></li></ul><a class="edit-page" href="https://github.com/rbontekoe/RbO.jl/blob/master/docs/src/module_b3.md"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Example</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Examples-1" href="#Examples-1">Examples</a></h1><pre><code class="language-julia">using  RbO
+
+# create on-disk db
+# db = connect(&quot;./rbo.sqlite&quot;)
+# create in-memory db
+db = connect()
+
+# create subscribers
+const daisy = createSubscriber( &quot;Daisy&quot; )
+const mickey = createSubscriber( &quot;Mickey&quot; )
+const scrooge = createSubscriber( &quot;Scrooge McDuck&quot;, &quot;scrooge@duckcity.com&quot;, PLOTTER )
+
+# store in DatabaseItem
+data = [daisy, mickey, scrooge]
+create(db , &quot;subscribers&quot;, data)
+
+# read data back
+r = gather(db, &quot;subscribers&quot;)
+println(r)
+
+# update subscriber
+daisy = updateSubscriber(daisy, &quot;Daisy Duck&quot;, &quot;daisy@duckcity.com&quot;, PLOTTER)
+data = [daisy]
+update(db, &quot;subscribers&quot;, data)
+
+# read data back (subscriber should be added, action UPDATE)
+r = gather(db, &quot;subscribers&quot;)
+println(r)
+
+# read selective
+r = gather(db, &quot;subscribers&quot;, &quot;key = &#39;&quot; * daisy.id * &quot;&#39;&quot;)
+println(r)
+
+# create Publisher and add subscriber
+const nyt = createPublisher( &quot;New York Times&quot;)
+subscribe(nyt, daisy)
+
+# store in DatabaseItem
+data = [nyt]
+create(db, &quot;publishers&quot;, data)
+
+# read back
+r = gather(db, &quot;publishers&quot;)
+println(r)
+
+# update Publisher
+nyt = updatePublisher(nyt, &quot;The New York Times&quot;, NEWSPAPER)
+update(db, &quot;publishers&quot;, [nyt])
+
+# read publisher from database
+r = gather(db, &quot;publishers&quot;)
+println(r)
+
+# add subscriber to publisher
+nyt = subscribe(nyt, scrooge)
+update(db, &quot;publishers&quot;, [nyt])
+
+# read back
+r = gather(db, &quot;publishers&quot;)
+println(r)
+
+## MANIPULTATIONS
+
+# Reading all subscribers
+r = gather(db, &quot;subscribers&quot;)
+
+# Convert name of subscriber to uppercase and store in database
+s = map(i -&gt; updateSubscriber(i, uppercase(i.name), i.email, i.subscribertype), r.item)
+update(db, &quot;subscribers&quot;, s)
+
+# reading back subscrivbers
+r = gather(db, &quot;subscribers&quot;)
+println(r)
+
+# list of the latest mutations (last added subscribers)
+using DataFrames
+t = map( i -&gt; last(gather( db, &quot;subscribers&quot;, &quot;key = &#39;$i&#39;&quot; )).item, unique(r.key) ) |&gt; DataFrame
+println(t)
+
+# MESSAGE tests
+message = createMessage( &quot;Wether&quot;, &quot;Temperatures&quot;, [19.0, 23.0, 24.5] )
+create( db, &quot;messages&quot;, [message] )
+r = gather( db, &quot;messages&quot; )
+println( r )
+
+message = updateMessage( message, &quot;Weather&quot;, &quot;&quot;, [19.0, 22.5, 24.5] )
+update( db, &quot;messages&quot;, [message] )
+r = gather( db, &quot;messages&quot; )
+println( r )</code></pre><footer><hr/><a class="previous" href="../module_c/"><span class="direction">Previous</span><span class="title">Domain items</span></a><a class="next" href="../module_d/"><span class="direction">Next</span><span class="title">Examples</span></a></footer></article></body></html>
