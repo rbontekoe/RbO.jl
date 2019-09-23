@@ -18,7 +18,7 @@ makedocs(
             "Domain items" => "module_c.md",
             "Example" => "module_b3.md"
         ],
-        "Examples" => "module_d.md"
+        "Appendix" => "module_d.md"
     ]
 )
 

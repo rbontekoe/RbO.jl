@@ -89,10 +89,11 @@ makedocs(
         "Installing the module" => "module_a.md",
         "Public Interface" => [
             "API methods" => "module_b.md",
-            "Database methods" => "module_b2.md",
-            "Domain Items" => "module_c.md"
+            "Infrascructure methods" => "module_b2.md",
+            "Domain items" => "module_c.md",
+            "Example" => "module_b3.md"
         ],
-        "Examples" => "module_d.md"
+        "Appendix" => "module_d.md"
     ]
 )
 ```
