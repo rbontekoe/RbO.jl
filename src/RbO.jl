@@ -13,5 +13,6 @@ module RbO
     export updateSubscriber, updatePublisher, updateMessage
 
     include("./api/api.jl")
+    include("./infrastructure/db.jl")
 
 end #end of RobO.jl

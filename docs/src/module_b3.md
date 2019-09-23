@@ -1,6 +1,11 @@
+# Examples
+
+```julia
 using  RbO
 
-#db = connect("./rbo.sqlite")
+# create on-disk db
+# db = connect("./rbo.sqlite")
+# create in-memory db
 db = connect()
 
 # create subscribers
@@ -85,3 +90,4 @@ message = updateMessage( message, "Weather", "", [19.0, 22.5, 24.5] )
 update( db, "messages", [message] )
 r = gather( db, "messages" )
 println( r )
+```

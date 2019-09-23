@@ -12,7 +12,7 @@ function updateSubscriber end
 function updatePublisher end
 function updateMessage end
 
-## Database CRUD functions
+## Infrastructure functions
 function connect end
 function create end
 function gather end # read is already used
