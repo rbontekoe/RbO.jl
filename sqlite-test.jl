@@ -1,3 +1,5 @@
+push!(LOAD_PATH, "/home/rob/julia_projects/RbO.jl/src/")
+
 using  RbO
 
 #db = connect("./rbo.sqlite")

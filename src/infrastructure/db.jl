@@ -17,7 +17,7 @@ end # end DatabaseItem
 Returns a database.
 
 # Example
-```julia
+```jldoctest
 julia> using RbO
 
 julia> db = connect("./rbo.sqlite")
@@ -32,7 +32,7 @@ connect(path::String)::SQLite.DB = SQLite.DB(path)
 Returns an in-memory database.
 
 # Example
-```Julia
+```jldoctest
 julia> using RbO
 
 julia> db = connect()
@@ -48,19 +48,14 @@ connect() = SQLite.DB()::SQLite.DB
 Store subscribes in a database table.
 
 # Example
-```julia
+```jldoctest
 julia> using RbO
 
-julia> daisy = createSubscriber( "Daisy" )
-Subscriber("14400338531749444750", "Daisy", "", MEAN_CALCULATOR::SubscriberType = 0)
+julia> daisy = createSubscriber( "Daisy" );
 
-julia> mickey = createSubscriber( "Mickey" )
-Subscriber("7987502302757180929", "Mickey", "", MEAN_CALCULATOR::SubscriberType = 0)
+julia> mickey = createSubscriber( "Mickey" );
 
-julia> data = [ daisy, mickey ]
-2-element Array{Subscriber,1}:
- Subscriber("14400338531749444750", "Daisy", "", MEAN_CALCULATOR::SubscriberType = 0)
- Subscriber("7987502302757180929", "Mickey", "", MEAN_CALCULATOR::SubscriberType = 0)
+julia> data = [ daisy, mickey ];
 
 julia> db = connect()
 SQLite.DB(in-memory)
@@ -81,11 +76,10 @@ end # end create
 Store publishers in a database table.
 
 # Exampple
-```julia
+```jldoctest
 julia> using RbO
 
-julia> nyt = createPublisher( "The New York Times" )
-Publisher("16372046879139874576", "The New York Times", NEWSPAPER::PublisherType = 0, Subscriber[])
+julia> nyt = createPublisher( "The New York Times" );
 
 julia> db = connect()
 SQLite.DB(in-memory)

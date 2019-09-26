@@ -1,0 +1,6 @@
+```julia
+julia> using RbO
+
+julia> mickey = createSubscriber( "Micky Mouse" )
+Subscriber("5266070367247245961", "Micky Mouse", "", MEAN_CALCULATOR::SubscriberType = 0
+```

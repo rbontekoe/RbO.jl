@@ -17,11 +17,10 @@ Creates a Subscriber.
 
 # Example
 
-```julia
+```jldoctest
 julia> using RbO
 
-julia> mickey = createSubscriber( "Micky Mouse" )
-Subscriber("5266070367247245961", "Micky Mouse", "", MEAN_CALCULATOR::SubscriberType = 0
+julia> mickey = createSubscriber( "Micky Mouse" );
 ```
 """
 createSubscriber( name::String ) ::Subscriber =
@@ -51,11 +50,10 @@ Creates a Subscriber with a name, an e-mail address, and [SubscriberType] (@ref)
 
 # Example
 
-```julia
+```jldoctest
 julia> using RbO
 
-julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", PLOTTER )
-Subscriber("7556935909242662862", "Scrooge McDuck", "scrooge@duckcity.com", PLOTTER::SubscriberType = 2)
+julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", PLOTTER );
 ```
 """
 createSubscriber( name::String, email::String, subscribertype::SubscriberType )::Subscriber =
@@ -76,8 +74,7 @@ julia> using RbO
 julia> nyt = createPublisher("")::Publisher
 ERROR: MissingException: Publisher name is mandatory
 
-julia> nyt = createPublisher( "The New York Times" )
-Publisher("8651587598072409040", "The New York Times", NEWSPAPER::PublisherType = 0, Subscriber[])
+julia> nyt = createPublisher( "The New York Times" );
 ```
 """
 createPublisher( name::String )::Publisher =
@@ -90,11 +87,10 @@ Returns a Publisher object.
 
 # Example
 
-```julia_projects
+```jldoctest
 julia> using RbO
 
-julia> chronicals = createPublisher( "the Duck Chronicals", MAGAZINE )
-Publisher("1425143201220694185", "the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[])
+julia> chronicals = createPublisher( "the Duck Chronicals", MAGAZINE );
 ```
 """
 createPublisher( name::String, publishertype::PublisherType )::Publisher =
@@ -164,11 +160,10 @@ Create a Message for the subscribers of a publisher.
 
 # Example
 
-```julia
+```jldoctest
 julia> using RbO
 
-julia> message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10.5, 12.7, 10.2] )
-Message("6552947469222051903", "Weather station", "Temperatures", [10.9, 12.0, 10.5, 12.7, 10.2])
+julia> message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10.5, 12.7, 10.2] );
 ```
 """
 createMessage( header::String, subject::String, body::Array{Float64, 1} )::Message =
@@ -181,26 +176,20 @@ Notifies subscribers of a Publisher.
 
 # Example
 
-```juia
+```jldoctest
 julia> using RbO, Statistics
 
-julia> daisy = createSubscriber( "Daisy Mouse", "daisy@duckcity.com" )
-Subscriber("6169770273605469864", "Daisy Mouse", "daisy@duckcity.com", MEAN_CALCULATOR::SubscriberType = 0)
+julia> daisy = createSubscriber( "Daisy Mouse", "daisy@duckcity.com" );
 
-julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", PLOTTER )
-Subscriber("10186428844176937704", "Scrooge McDuck", "scrooge@duckcity.com", PLOTTER::SubscriberType = 2)
+julia> scrooge = createSubscriber( "Scrooge McDuck", "scrooge@duckcity.com", PLOTTER );
 
-julia> chronicals = createPublisher( "the Duck Chronicals", MAGAZINE )
-Publisher("7230819820238935481", "the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[])
+julia> chronicals = createPublisher( "the Duck Chronicals", MAGAZINE );
 
-ulia> subscribe( chronicals, daisy )
-Publisher("6510219041301655288", "the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[Subscriber("6169770273605469864", "Daisy Mouse", "daisy@duckcity.com", MEAN_CALCULATOR)])
+julia> subscribe( chronicals, daisy );
 
-julia> subscribe( chronicals, scrooge )
-Publisher("7476862917858954939", "the Duck Chronicals", MAGAZINE::PublisherType = 1, Subscriber[Subscriber("6169770273605469864", "Daisy Mouse", "daisy@duckcity.com", MEAN_CALCULATOR), Subscriber("10186428844176937704", "Scrooge McDuck", "scrooge@duckcity.com", PLOTTER)])
+julia> subscribe( chronicals, scrooge );
 
-julia> message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10.5, 12.7, 10.2] )
-Message("12608934706983977616", "Weather station", "Temperatures", [10.9, 12.0, 10.5, 12.7, 10.2])
+julia> message = createMessage( "Weather station", "Temperatures", [10.9, 12, 10.5, 12.7, 10.2] );
 
 julia> result = []
 0-element Array{Any,1}
