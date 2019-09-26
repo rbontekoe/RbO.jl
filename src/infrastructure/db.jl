@@ -70,7 +70,8 @@ julia> create( db, "subscribers", data )
 ```
 """
 create( db::SQLite.DB, table::String, domainItems::Array{Subscriber, 1} ) = begin
-   dbi = [ createDatabaseItem(i, "AB9F", "CREATE") for i in domainItems]
+   #dbi = [ createDatabaseItem(i, "AB9F", "CREATE") for i in domainItems]
+   dbi = [ createDatabaseItem( i ; action="CREATE" ) for i in domainItems]
    DataFrame( dbi ) |> SQLite.load!(db, table)
 end # end create
 
@@ -94,7 +95,8 @@ julia> create(db, "publishers", [ nyt ])
 ```
 """
 create( db::SQLite.DB, table::String, domainItems::Array{Publisher, 1} ) = begin
-   dbi = [ createDatabaseItem(i, "AB9F", "CREATE") for i in domainItems]
+   #dbi = [ createDatabaseItem(i, "AB9F", "CREATE") for i in domainItems]
+   dbi = [ createDatabaseItem( i; action="CREATE" ) for i in domainItems]
    DataFrame( dbi ) |> SQLite.load!(db, table)
 end # end create
 
@@ -104,7 +106,8 @@ end # end create
 Store publishers in a database table.
 """
 create( db::SQLite.DB, table::String, domainItems::Array{Message, 1} ) = begin
-   dbi = [ createDatabaseItem(i, "AB9F", "CREATE") for i in domainItems]
+   #dbi = [ createDatabaseItem(i, "AB9F", "CREATE") for i in domainItems]
+   dbi = [ createDatabaseItem( i; action="CREATE" ) for i in domainItems]
    DataFrame( dbi ) |> SQLite.load!(db, table)
 end # end create
 
@@ -176,13 +179,12 @@ gather( db::SQLite.DB, table::String, condition::String )::DataFrame = SQLite.Qu
 
 # dataItem - internal function
 const agent = "AB9F"
-createDatabaseItem( item::Any, agent::String, action::String ) = DatabaseItem( time(), agent, action, item.id, item )
+createDatabaseItem( item::Any; agent="AB9F", action="CREATE" ) = DatabaseItem( time(), agent, action, item.id, item )
 
 # update
 """
     update( db::SQLite.DB, table::String, domainItems::Array{Subscribers, 1} )
 
-Update subscribers in a database table.
 
 # Example
 ```Julia
@@ -223,7 +225,7 @@ julia> gather( db, "subscribers", "key = '" * daisy.id * "'" )
 ```
 """
 update( db::SQLite.DB, table::String, domainItems::Array{Subscriber, 1} ) = begin
-   dbi = [ createDatabaseItem(i, "AB9F", "UPDATE") for i in domainItems]
+   dbi = [ createDatabaseItem(i, action="UPDATE") for i in domainItems]
    DataFrame( dbi ) |> SQLite.load!(db, table)
 end # end update
 
@@ -233,7 +235,7 @@ end # end update
 Update publishers in a database table.
 """
 update( db::SQLite.DB, table::String, domainItems::Array{Publisher, 1} ) = begin
-   dbi = [ createDatabaseItem(i, "AB9F", "UPDATE") for i in domainItems]
+   dbi = [ createDatabaseItem(i, action="UPDATE") for i in domainItems]
    DataFrame( dbi ) |> SQLite.load!(db, table)
 end # end update
 
@@ -243,6 +245,6 @@ end # end update
 Update messages in a database table.
 """
 update( db::SQLite.DB, table::String, domainItems::Array{Message, 1} ) = begin
-   dbi = [ createDatabaseItem(i, "AB9F", "UPDATE") for i in domainItems]
+   dbi = [ createDatabaseItem(i, action="UPDATE") for i in domainItems]
    DataFrame( dbi ) |> SQLite.load!(db, table)
 end # end update

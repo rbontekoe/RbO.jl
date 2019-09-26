@@ -1,6 +1,7 @@
 # push!(LOAD_PATH, "/home/rob/julia_projects/RbO.jl/src/")
 using Test, SQLite, DataFrames
 include("../src/api/api.jl")
+include("../src/infrastructure/infrastructure.jl")
 
 # TEST MODEL
 @testset "PublisherType test" begin

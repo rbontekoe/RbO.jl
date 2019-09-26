@@ -19,6 +19,8 @@ function gather end # read is already used
 function update end
 function delete end
 
+function createDatabaseItem end
+
 ## Abstract types
 abstract type DomainObject end
 abstract type Information <: DomainObject end
