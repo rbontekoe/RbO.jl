@@ -14,6 +14,9 @@ For the creation of the Julia notebook, I used Literate.jl, after watching this 
 
 ## Logbook
 
+### 9/26/2019
+I added named arguments in the createDatabaseItem method: agent="AB9F" and action="CREATE". In the database method update I use action="UPDATE". It is time to implement CQRS and Event Sourcing. I couldn't find an existing package.
+
 #### 9/17/2019
 Reading [Think Julia] (https://benlauwens.github.io/ThinkJulia.jl/latest/book.html#_serialization) I discovered the package Serialization. While playing with it, I realized that it could solve my CQRS and Event Sourcing problem. With the method serialize, you can create a text representation of an object, that you can store. With deserialize, you do the reverse. Serialize writes to an IOStream, and deserialize reads from it. An IOStream can be an IOBuffer or a file. It makes Event Sourcing easier.
 

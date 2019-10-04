@@ -1,6 +1,8 @@
 # main module  - rbontekoe@appligate.nl
 module RbO
 
+    greet() = print("RbO")
+
     using SQLite, DataFrames
 
     # Domain objects
