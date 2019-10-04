@@ -1,5 +1,5 @@
-name = "RbO.jl"
-uuid = "f84c5b86-e6a7-11e9-031a-9906c5d64396"
+name = "RbO"
+uuid = "870458b4-e6a9-11e9-1a10-cdc4de5f60bf"
 authors = ["Rob Bontekoe <rbontekoe@appligate.nl>"]
 version = "0.1.0"
 
